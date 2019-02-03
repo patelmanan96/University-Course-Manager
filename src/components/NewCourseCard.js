@@ -10,5 +10,6 @@ const NewCourseCard = ({course, addCourse}) =>
             <p className="card-text">Card text</p>
             <a onClick={() => addCourse()}
                className="btn btn-success">Add Course</a>
-        </div></div>
+        </div>
+    </div>
 export default NewCourseCard;

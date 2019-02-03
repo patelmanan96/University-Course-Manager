@@ -4,6 +4,7 @@ import CourseGrid from './CourseGrid'
 import CourseTable from '../containers/CourseTable'
 import CourseService from '../services/CourseService'
 import CourseEditor from "./CourseEditor";
+import NavBar from "./NavBar";
 
 class WhiteBoard extends Component {
     constructor() {
@@ -26,21 +27,26 @@ class WhiteBoard extends Component {
     render() {
         return (
             <div>
-                <h1>White Board</h1>
                 <Router>
                     <div>
                         <Link to="/">Course Grid</Link> |
                         <Link to="/table">Course Table</Link>
                         <Route path='/' exact render={() =>
-                                   <CourseGrid
-                                       addCourse={this.addCourse}
-                                       deleteCourse={this.deleteCourse}
-                                       courses={this.state.courses}/>}/>
+                            <div><NavBar/>
+                                <CourseGrid
+                                    addCourse={this.addCourse}
+                                    deleteCourse={this.deleteCourse}
+                                    courses={this.state.courses}/></div>
+                        }/>
                         <Route path="/course/:id"
                                exact
                                component={CourseEditor}/>
                         <Route path='/table'
-                               render={() => <CourseTable courses={this.state.courses}/>}/>
+                               render={() => <div>
+                                   <NavBar/>
+                                   <CourseTable courses={this.state.courses}/>
+                               </div>
+                               }/>
                     </div>
                 </Router>
             </div>
