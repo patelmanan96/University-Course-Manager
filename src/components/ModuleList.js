@@ -32,18 +32,9 @@ class ModuleList extends React.Component {
 
     render() {
         return (
-            <div>
-                <h3>Module List</h3>
-                <ul className="list-group">
-                    <li className="list-group-item">
-                        <input
-                            onChange={this.titleChanged}
-                            className="form-control"/>
-                        <button
-                            onClick={this.createModule}
-                            className="btn btn-primary btn-block">Add Module
-                        </button>
-                    </li>
+            <div className="col-3 bg-dark">
+                <ul className="nav flex-column nav-pills">
+
                     {
                         this.state.modules.map(
                             (module) => {
@@ -56,8 +47,16 @@ class ModuleList extends React.Component {
                             }
                         )
                     }
+
+                    <div className="p-2"><input type="text" onChange={this.titleChanged}
+                                                className="form-control" placeholder="Module Name"/></div>
+                    <button className="btn btn-block btn-outline-primary" onClick={this.createModule}>
+                        <i className="fa fa-plus"></i>
+                    </button>
+
                 </ul>
             </div>
+
         )
     }
 }

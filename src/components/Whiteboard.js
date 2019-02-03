@@ -19,20 +19,22 @@ class WhiteBoard extends Component {
         this.setState({
             courses: this.courseService.deleteCourse(course)
         });
-    addCourse = () =>
+    addCourse = course => {
+        console.log(course);
         this.setState({
-            courses: this.courseService.addCourse(null)
+            courses: this.courseService.addCourse(course)
         });
+    }
 
     render() {
         return (
             <div>
                 <Router>
                     <div>
-                        <Link to="/">Course Grid</Link> |
+                        <Link to="/">Course Grid</Link>
                         <Link to="/table">Course Table</Link>
                         <Route path='/' exact render={() =>
-                            <div><NavBar/>
+                            <div><NavBar addCourse={this.addCourse}/>
                                 <CourseGrid
                                     addCourse={this.addCourse}
                                     deleteCourse={this.deleteCourse}
@@ -43,8 +45,11 @@ class WhiteBoard extends Component {
                                component={CourseEditor}/>
                         <Route path='/table'
                                render={() => <div>
-                                   <NavBar/>
-                                   <CourseTable courses={this.state.courses}/>
+                                   <NavBar addCourse={this.addCourse}/>
+                                   <CourseTable courses={this.state.courses}
+                                                deleteCourse={this.deleteCourse}
+                                                addCourse={this.addCourse}
+                                   />
                                </div>
                                }/>
                     </div>

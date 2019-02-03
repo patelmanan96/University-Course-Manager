@@ -7,8 +7,8 @@ const CourseTable = ({courses, deleteCourse, addCourse}) =>
     <div className="container-fluid">
         <div className="table">
             <table className="table">
+                <tbody>
                 <CourseRowTitle/>
-
                 {
                     courses.map(course =>
                         <CourseRow
@@ -17,6 +17,7 @@ const CourseTable = ({courses, deleteCourse, addCourse}) =>
                             key={course.id}/>
                     )
                 }
+                </tbody>
             </table>
         </div>
     </div>;
