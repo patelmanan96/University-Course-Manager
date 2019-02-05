@@ -1,14 +1,10 @@
 import React from 'react'
 
-export default class TopicPills
-    extends React.Component {
-    render() {
-        return(
-            <ul className="nav nav-pills">
-                <li className="nav-item">
-                    <a className="nav-link active"
-                       href="#">Topic 1</a></li>
-                <li className="nav-item">
-                    <a className="nav-link"
-                       href="#">Topic 2</a></li></ul>
-        );}}
+const TopicPills = ({topics,deleteTopic,editTopic}) =>
+    <div className="row p-3">
+        <div className="col-12">
+            <h1>{topics.title}</h1>
+
+        </div>
+    </div>
+export default TopicPills;

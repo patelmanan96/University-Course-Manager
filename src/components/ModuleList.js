@@ -6,7 +6,16 @@ class ModuleList extends React.Component {
         super(props)
 
         this.state = {
-            module: {title: ''},
+            module: {id: (new Date()).getTime() ,
+                title: '',
+                lessons:[
+                    {
+                        id:(new Date()).getTime(),
+                        title:'',
+                        topics:[]
+                    }
+                ]
+            },
             modules: this.props.modules
         };
 
@@ -30,6 +39,29 @@ class ModuleList extends React.Component {
             });
     }
 
+    deleteModule = module => {
+        this.state.modules = this.state.modules.filter(
+            mod => mod.title !== module.title
+        )
+    }
+
+    editModule = module => {
+        let newName = prompt("ENTER NEW NAME FOR : " + module.title);
+        if (newName !== "" && newName !== null) {
+            let xx = this.state.modules.find(mod => mod.title === module.title);
+            let index = this.state.modules.indexOf(xx);
+            this.state.modules[index].title = newName;
+            this.setState(
+                {
+                    modules: [
+                        ...this.state.modules
+                    ]
+                }
+            )
+        }
+    }
+
+
     render() {
         return (
             <div className="col-3 bg-dark">
@@ -42,12 +74,14 @@ class ModuleList extends React.Component {
                                     <ModuleListItem
                                         selectModule={this.props.selectModule}
                                         key={module.id}
-                                        module={module}/>
+                                        module={module}
+                                        deleteModule={this.deleteModule}
+                                        editModule={this.editModule}
+                                    />
                                 )
                             }
                         )
                     }
-
                     <div className="p-2"><input type="text" onChange={this.titleChanged}
                                                 className="form-control" placeholder="Module Name"/></div>
                     <button className="btn btn-block btn-outline-primary" onClick={this.createModule}>

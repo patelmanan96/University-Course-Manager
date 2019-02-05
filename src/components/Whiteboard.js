@@ -5,6 +5,7 @@ import CourseTable from '../containers/CourseTable'
 import CourseService from '../services/CourseService'
 import CourseEditor from "./CourseEditor";
 import NavBar from "./NavBar";
+import CourseRowTitle from "./CoureRowTitle";
 
 class WhiteBoard extends Component {
     constructor() {
@@ -31,7 +32,7 @@ class WhiteBoard extends Component {
             <div>
                 <Router>
                     <div>
-                        <Link to="/">Course Grid</Link>
+                       <Link  to="/">Course Grid</Link> ||
                         <Link to="/table">Course Table</Link>
                         <Route path='/' exact render={() =>
                             <div><NavBar addCourse={this.addCourse}/>
