@@ -8,8 +8,7 @@ const CourseRowTitle = () =>
         <th className="d-none d-sm-table-cell">Modified</th>
         <th>
             <div className="container-fluid">
-                <div className="row">
-                    <div className="col-3"><GridTableSwitch whatSwitch="/"/></div>
+                <div className="row pl-1"><GridTableSwitch whatSwitch="/"/>
                     <div className="col-9"></div>
                 </div>
             </div>
