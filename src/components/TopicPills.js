@@ -43,8 +43,9 @@ class TopicPills extends React.Component {
                                 this.props.topics.map(topic =>
 
                                     <li key={topic.id} className="nav-item">
-                                        <button id={topic.id}
-                                                className="text-dark nav-link btn btn-outline-primary">{topic.title}&nbsp;&nbsp;&nbsp;
+                                        <button id={topic.id} onClick={() => this.props.selectTopic(topic)}
+                                                className={this.props.activeTopic(topic) ? "text-dark nav-link btn btn-outline-primary active" :
+                                                    "text-dark nav-link btn btn-outline-primary" }>{topic.title}&nbsp;&nbsp;&nbsp;
                                             <button type="button" onClick={() => {
                                                 this.props.deleteTopic(topic)
                                             }} className="close text-white" aria-label="Close">

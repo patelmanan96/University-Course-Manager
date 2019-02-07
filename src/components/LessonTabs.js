@@ -50,7 +50,7 @@ class LessonTabs extends React.Component {
 
         }
         this.props.addLesson(this.state.lesson);
-    }
+    };
 
     render() {
         return (

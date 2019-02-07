@@ -78,15 +78,6 @@ class ModuleList extends React.Component {
         }
     }
 
-    activateModule = (module) => {
-        if (module.id === this.state.module.id){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
 
     render() {
         return (
@@ -98,7 +89,7 @@ class ModuleList extends React.Component {
                             (module) => {
                                 return (
                                     <ModuleListItem
-                                        activateModule = {this.activateModule}
+                                        activeModule = {this.props.activeModule}
                                         moduleClass={this.props.moduleClass}
                                         selectModule={this.props.selectModule}
                                         key={module.id}
