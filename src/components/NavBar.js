@@ -1,7 +1,7 @@
 import React from 'react';
 
 class NavBar extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             course:
@@ -10,13 +10,13 @@ class NavBar extends React.Component {
                     title: 'New Course',
                     modules: [{
                         id: (new Date()).getTime(),
-                        title:"Module 1",
-                        lessons:[{
-                            id:(new Date()).getTime(),
-                            title:"Lesson 1",
-                            topics:[{
-                                id:(new Date()).getTime(),
-                                title:"Topic 1"
+                        title: "Module 1",
+                        lessons: [{
+                            id: (new Date()).getTime(),
+                            title: "Lesson 1",
+                            topics: [{
+                                id: (new Date()).getTime(),
+                                title: "Topic 1"
                             }
                             ]
                         }]
@@ -26,12 +26,32 @@ class NavBar extends React.Component {
     }
 
     titleChange = (param) => {
+        var text;
+        if(param.target.value === ""){
+            text = 'New Course'
+        }
+        else{
+            text = param.target.value;
+        }
         this.setState(
             {
                 course:
                     {
                         id: (new Date()).getTime(),
-                        title: param.target.value,
+                        title: text,
+                        modules: [{
+                            id: (new Date()).getTime(),
+                            title: "Module 1",
+                            lessons: [{
+                                id: (new Date()).getTime(),
+                                title: "Lesson 1",
+                                topics: [{
+                                    id: (new Date()).getTime(),
+                                    title: "Topic 1"
+                                }
+                                ]
+                            }]
+                        }]
                     }
             });
     };
@@ -49,11 +69,13 @@ class NavBar extends React.Component {
                     <div className="col-md-8 col-10 pt-2  bg-primary">
                         <div className="form-group row">
                             <div className="col-10 col-sm-10">
-                                <input onChange={this.titleChange} type="text" className="form-control mt-2" placeholder="Course Title"/>
+                                <input onChange={this.titleChange} type="text" className="form-control mt-2"
+                                       placeholder="Course Title"/>
                             </div>
                             <div className="col-2 col-sm-2">
-                                <button onClick={() => this.props.addCourse(this.state.course)} className="btn-sm btn btn-outline-dark" >
-                                <i className="fa fa-plus float-left fa-2x mt-2"></i>
+                                <button onClick={() => this.props.addCourse(this.state.course)}
+                                        className="btn-sm btn btn-outline-dark">
+                                    <i className="fa fa-plus float-left fa-2x mt-2"></i>
                                 </button>
                             </div>
                         </div>
@@ -63,4 +85,5 @@ class NavBar extends React.Component {
         );
     }
 }
+
 export default NavBar;

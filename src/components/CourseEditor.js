@@ -168,7 +168,7 @@ class CourseEditor extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid pt-4">
+            <div className="container-fluid pt-4 mt-4">
                 <div className="row">
                     <CourseEditorNavBar title={this.state.course.title}/>
                 </div>

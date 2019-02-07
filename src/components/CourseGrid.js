@@ -4,18 +4,8 @@ import NewCourseCard from "./NewCourseCard";
 import GridTableSwitch from "./GridTableSwitch";
 
 const CourseGrid = ({courses, deleteCourse, addCourse}) =>
-    <div>
-        <div className="table">
-            <table>
-                <tr>
-                    <td className="d-sm-table-cell">&nbsp;</td>
-                    <td className="d-sm-table-cell">&nbsp;</td>
-                    <td className="d-sm-table-cell">&nbsp;</td>
-                    <td className="d-sm-table-cell"><GridTableSwitch whatSwitch="/table"/></td>
-                </tr>
-            </table>
-        </div>
-        <div className="card-deck">
+    <div className="container-fluid">
+        <div className=" card-deck ">
             {
                 courses.map(course =>
                     <CourseCard
