@@ -166,6 +166,31 @@ class CourseEditor extends React.Component {
         )
     }
 
+    activeModule = (module) => {
+        if (module.id === this.state.module.id){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    activeTopic = (topicPassed) => {
+        if (topicPassed.id === this.state.topic.id){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    selectTopic = (topicSelected) => {
+        this.setState(
+            {
+                topic:topicSelected
+            }
+        )
+    }
+
     render() {
         return (
             <div className="container-fluid pt-4 mt-4">
@@ -176,7 +201,9 @@ class CourseEditor extends React.Component {
                     <ModuleList
                         moduleClass={"nav-link btn-outline-primary"}
                         selectModule={this.selectModule}
-                        modules={this.state.course.modules}/>
+                        modules={this.state.course.modules}
+                        activeModule={this.activeModule}
+                    />
                     <div className="col-9 bg-light text-dark">
                         <LessonTabs
                             lessons={this.state.module.lessons}
@@ -191,6 +218,8 @@ class CourseEditor extends React.Component {
                                         editTopics={this.editTopics}
                                         deleteTopic={this.deleteTopic}
                                         createTopic={this.createTopic}
+                                        activeTopic={this.activeTopic}
+                                        selectTopic={this.selectTopic}
                             />
                         }
                         <Forms/>
