@@ -20,7 +20,6 @@ class LessonTabs extends React.Component {
     addLesson = () => {
         let inp = prompt("Enter The Topic Name : ");
         if (inp === "" || inp === null) {
-            alert("FIRST if")
             this.state =
                 {
                     lesson: {
@@ -34,9 +33,7 @@ class LessonTabs extends React.Component {
                         ]
                     }
                 }
-
         } else {
-            alert("second if ")
             this.state =
                 {
                     lesson: {
@@ -52,8 +49,6 @@ class LessonTabs extends React.Component {
                 }
 
         }
-        alert(this.state.lesson.title)
-
         this.props.addLesson(this.state.lesson);
     }
 
