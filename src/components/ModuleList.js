@@ -7,12 +7,15 @@ class ModuleList extends React.Component {
 
         this.state = {
             module: {id: (new Date()).getTime() ,
-                title: '',
+                title: 'New Module',
                 lessons:[
                     {
                         id:(new Date()).getTime(),
-                        title:'',
-                        topics:[]
+                        title:'Lesson 1',
+                        topics:[{
+                            id:(new Date()).getTime(),
+                            title:'Topic 1'
+                        }]
                     }
                 ]
             },
@@ -35,7 +38,20 @@ class ModuleList extends React.Component {
     titleChanged = (event) => {
         this.setState(
             {
-                module: {title: event.target.value}
+                module: {
+                    id: (new Date()).getTime(),
+                    title: event.target.value,
+                    lessons: [
+                        {
+                            id: (new Date()).getTime(),
+                            title: 'Lesson 1',
+                            topics:[{
+                                id:(new Date()).getTime(),
+                                title:'Topic 1'
+                            }]
+                        }
+                    ]
+                }
             });
     }
 
@@ -43,6 +59,7 @@ class ModuleList extends React.Component {
         this.state.modules = this.state.modules.filter(
             mod => mod.title !== module.title
         )
+        console.log(this.state.modules)
     }
 
     editModule = module => {
@@ -61,6 +78,15 @@ class ModuleList extends React.Component {
         }
     }
 
+    activateModule = (module) => {
+        if (module.id === this.state.module.id){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 
     render() {
         return (
@@ -72,6 +98,8 @@ class ModuleList extends React.Component {
                             (module) => {
                                 return (
                                     <ModuleListItem
+                                        activateModule = {this.activateModule}
+                                        moduleClass={this.props.moduleClass}
                                         selectModule={this.props.selectModule}
                                         key={module.id}
                                         module={module}

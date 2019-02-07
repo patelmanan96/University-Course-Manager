@@ -6,6 +6,7 @@ import CourseService from '../services/CourseService'
 import CourseEditor from "./CourseEditor";
 import NavBar from "./NavBar";
 import CourseRowTitle from "./CoureRowTitle";
+import GridTableSwitch from "./GridTableSwitch";
 
 class WhiteBoard extends Component {
     constructor() {
@@ -21,7 +22,8 @@ class WhiteBoard extends Component {
             courses: this.courseService.deleteCourse(course)
         });
     addCourse = course => {
-        console.log(course);
+        console.log("Passed : " + course.title);
+
         this.setState({
             courses: this.courseService.addCourse(course)
         });
@@ -32,8 +34,6 @@ class WhiteBoard extends Component {
             <div>
                 <Router>
                     <div>
-                       <Link  to="/">Course Grid</Link> ||
-                        <Link to="/table">Course Table</Link>
                         <Route path='/' exact render={() =>
                             <div><NavBar addCourse={this.addCourse}/>
                                 <CourseGrid

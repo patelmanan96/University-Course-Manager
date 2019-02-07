@@ -6,30 +6,32 @@ class NavBar extends React.Component {
         this.state = {
             course:
                 {
-                    id: null,
-                    title: null,
+                    id: (new Date()).getTime(),
+                    title: 'New Course',
                     modules: [{
-                        id:{},
-                        title:{},
-                        lessons:[{}]
+                        id: (new Date()).getTime(),
+                        title:"Module 1",
+                        lessons:[{
+                            id:(new Date()).getTime(),
+                            title:"Lesson 1",
+                            topics:[{
+                                id:(new Date()).getTime(),
+                                title:"Topic 1"
+                            }
+                            ]
+                        }]
                     }]
                 }
         }
     }
 
     titleChange = (param) => {
-        //console.log(param);
         this.setState(
             {
                 course:
                     {
                         id: (new Date()).getTime(),
                         title: param.target.value,
-                        modules: [{
-                            id:{},
-                            title:{},
-                            lessons:[{}]
-                        }]
                     }
             });
     };

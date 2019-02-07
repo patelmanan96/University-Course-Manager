@@ -1,8 +1,9 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const CourseRow = ({course,deleteCourse}) =>
     <tr>
-        <td><a href={"course/"+course.id}>{course.title}</a>
+        <td><Link to={"course/"+course.id}>{course.title}</Link>
         </td>
         <td className="d-none d-sm-table-cell">me</td>
         <td className="d-none d-sm-table-cell">8:45</td>

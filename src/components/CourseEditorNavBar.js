@@ -1,8 +1,10 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+
 
 const CourseEditorNavBar = ({title}) =>
     <nav className="navbar fixed-top text-white navbar-expand-lg navbar-light bg-light">
-        <a href="/table" className="btn btn-outline-primary text-black-50 btn-sm"><i className="fa fa-times"></i></a>
+        <Link to="/table" className="btn btn-outline-primary text-black-50 btn-sm"><i className="fa fa-times"></i></Link>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a className="navbar-brand nav-link text-primary" href="#">{title}</a>
         <button className="navbar-toggler" type="button"
