@@ -21,6 +21,7 @@ const widgetReducer = (state = widgets, action) => {
             return {
                 widgets: state.widgets.filter(widget => widget.id !== action.widget.id)
             }
+
         case 'ADD_WIDGET':
             return {
                 widgets: [
@@ -32,6 +33,7 @@ const widgetReducer = (state = widgets, action) => {
                     }
                 ]
             }
+
         case 'UPDATE_WIDGET':
             // replace the old widget with the new widget
             return {
@@ -39,8 +41,10 @@ const widgetReducer = (state = widgets, action) => {
                     widget.id === action.widget.id ? action.widget : widget
                 )
             }
+
         default:
             return state;
+
     }
 }
 

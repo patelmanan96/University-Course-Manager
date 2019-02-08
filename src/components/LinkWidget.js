@@ -1,22 +1,33 @@
-import React from 'react'
+import React from "react";
 
-const ImageWidget = ({widget,updateWidget}) =>
-
+const LinkWidget = ({widget,updateWidget}) =>
     <div className="col-12">
         <div className="container p-2">
+
+            <div className="form-group row">
+                <div className="col-sm-12">
+                    <input className="form-control" placeholder="www.google.com"
+                           onChange={event => {
+                               widget.url = event.target.value;
+                               updateWidget(widget)
+                           }} type="url"/>
+                </div>
+            </div>
+
             <div className="form-group row">
                 <div className="col-sm-12">
                     <input className="form-control" onChange={event => {
                         widget.text = event.target.value;
                         updateWidget(widget)
-                    }} type="url" placeholder="Image link"/>
+                    }
+                    } type="text" placeholder="Link Text"/>
                 </div>
             </div>
 
             <div className="form-group row">
                 <div className="col-sm-12">
                     <input className="form-control"
-                           id="widgetI"
+                           id="widgetLK"
                            placeholder="Widget Name"/>
                 </div>
             </div>
@@ -27,11 +38,9 @@ const ImageWidget = ({widget,updateWidget}) =>
             </div>
             <div className="form-group row">
                 <div className="col-sm-12">
-                    <img src={widget.text} height="420" width="600" placeholder="https://www.gstatic.com/webp/gallery/1.jpg"
-                         alt="Failed to load image from the link"/>
+                    <a target="_blank" href={"https://"+widget.url}>{widget.text}</a>
                 </div>
             </div>
         </div>
     </div>
-
-export default ImageWidget
+export default LinkWidget

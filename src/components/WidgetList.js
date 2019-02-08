@@ -13,11 +13,12 @@ const WidgetList = ({widgets, addWidget, deleteWidget, updateWidget}) =>
                         widget={widget}/>
                 )
             }
-            <button
-                onClick={addWidget}
-                className="btn btn-success">
-                Add
-            </button>
+            <div className="row p-3">
+                <div className="col-12">
+                    <button onClick={addWidget} className="btn btn-primary btn-block btn-md"><i className="fa fa-plus"></i>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 

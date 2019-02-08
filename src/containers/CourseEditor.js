@@ -7,9 +7,8 @@ import CourseEditorNavBar from "../components/CourseEditorNavBar";
 import Forms from "../components/Forms";
 import {createStore} from "redux";
 import {Provider} from 'react-redux';
-import WidgetListContainer from 'WidgetListContainer';
 import WidgetReducer from '../reducers/WidgetReducer';
-
+import WidgetListContainer from './WidgetListContainer'
 
 const cStore = createStore(WidgetReducer);
 

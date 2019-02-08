@@ -1,22 +1,23 @@
 import React from 'react'
 
-const ImageWidget = ({widget,updateWidget}) =>
+const ParagraphWidget = ({widget,updateWidget}) =>
 
     <div className="col-12">
         <div className="container p-2">
             <div className="form-group row">
                 <div className="col-sm-12">
-                    <input className="form-control" onChange={event => {
+                    <textarea onChange={event => {
                         widget.text = event.target.value;
                         updateWidget(widget)
-                    }} type="url" placeholder="Image link"/>
+                    }}
+                              className="form-control">Type Paragraph Here...</textarea>
                 </div>
             </div>
 
             <div className="form-group row">
                 <div className="col-sm-12">
                     <input className="form-control"
-                           id="widgetI"
+                           id="widgetNP"
                            placeholder="Widget Name"/>
                 </div>
             </div>
@@ -27,11 +28,10 @@ const ImageWidget = ({widget,updateWidget}) =>
             </div>
             <div className="form-group row">
                 <div className="col-sm-12">
-                    <img src={widget.text} height="420" width="600" placeholder="https://www.gstatic.com/webp/gallery/1.jpg"
-                         alt="Failed to load image from the link"/>
+                    <p>{widget.text}</p>
                 </div>
             </div>
         </div>
     </div>
 
-export default ImageWidget
+export default ParagraphWidget;

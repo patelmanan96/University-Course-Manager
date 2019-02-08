@@ -21,7 +21,7 @@ const Forms = () =>
             <div className="col-12">
                 <div className="card bg-transparent">
                     <div className="container p-2">
-                        <form>
+
                             <div className="form-group row">
                                 <div className="col-5 m-1">
                                     <h3>Heading Widget</h3>
@@ -67,6 +67,7 @@ const Forms = () =>
                                            placeholder="Heading Text"/>
                                 </div>
                             </div>
+
                             <div className="form-group row">
                                 <div className="col-sm-12">
                                     <select className="form-control">
@@ -105,7 +106,6 @@ const Forms = () =>
                                     <h1>Heading Text</h1>
                                 </div>
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>
