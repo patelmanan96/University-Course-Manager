@@ -5,6 +5,13 @@ import TopicPills from "../components/TopicPills";
 import CourseService from "../services/CourseService"
 import CourseEditorNavBar from "../components/CourseEditorNavBar";
 import Forms from "../components/Forms";
+import {createStore} from "redux";
+import {Provider} from 'react-redux';
+import WidgetListContainer from 'WidgetListContainer';
+import WidgetReducer from '../reducers/WidgetReducer';
+
+
+const cStore = createStore(WidgetReducer);
 
 class CourseEditor extends React.Component {
     constructor(props) {
@@ -222,7 +229,10 @@ class CourseEditor extends React.Component {
                                         selectTopic={this.selectTopic}
                             />
                         }
-                        <Forms/>
+                        {/*<Forms/>*/}
+                        <Provider store={cStore}>
+                            <WidgetListContainer/>
+                        </Provider>
                     </div>
 
                 </div>
