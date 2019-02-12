@@ -1,3 +1,5 @@
+import CourseService from "../services/CourseService";
+
 const widgets =
     {
         widgets: [
@@ -15,23 +17,36 @@ const widgets =
             }
         ]
     }
-const widgetReducer = (state = widgets, action) => {
+const widgetReducer = (state = {widgets: []}, action) => {
+    console.log(state)
     switch(action.type) {
         case 'DELETE_WIDGET':
             return {
-                widgets: state.widgets.filter(widget => widget.id !== action.widget.id)
+                widgets: state.widgets.filter(widget => widget.id !== action.widget.id),
+                courseService : state.courseService,
+                topicId:state.topicId
             }
 
         case 'ADD_WIDGET':
+            action.widgets = action.widgets.map(widget =>{
+                return Object.assign({}, widget)
+            })
+            console.log("add")
+            console.log(state)
+            console.log(action)
             return {
                 widgets: [
-                    ...state.widgets,
+                    ...action.widgets,
                     {
+                        id: (new Date()).getTime(),
                         type: 'HEADING',
                         text: 'New Widget',
                         size: 1
                     }
-                ]
+                ],
+                courseService : state.courseService,
+                topicId:state.topicId
+
             }
 
         case 'UPDATE_WIDGET':
@@ -39,8 +54,24 @@ const widgetReducer = (state = widgets, action) => {
             return {
                 widgets: state.widgets.map(widget =>
                     widget.id === action.widget.id ? action.widget : widget
-                )
+                ),
+                courseService : state.courseService,
+                topicId:state.topicId
             }
+        case 'MOVE_UP':
+            return{
+
+            }
+        case 'MOVE_DOWN':
+            return{
+
+            }
+        case 'LOAD':
+            console.log("here")
+            let newState = Object.assign({}, state);
+            newState.widgets = action.widgets
+            console.log(newState)
+            return newState
 
         default:
             return state;

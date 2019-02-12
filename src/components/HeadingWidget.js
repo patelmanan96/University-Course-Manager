@@ -7,7 +7,7 @@ const HeadingWidget = ({widget, updateWidget}) =>
         <div className="container p-2">
             <div className="form-group row">
                 <div className="col-sm-12">
-                    <input className="form-control" value={widget.text}
+                    <input className="form-control" defaultValue={widget.text}
                            onChange={event => {
                                widget.text = event.target.value;
                                updateWidget(widget)

@@ -10,7 +10,11 @@ import {Provider} from 'react-redux';
 import WidgetReducer from '../reducers/WidgetReducer';
 import WidgetListContainer from './WidgetListContainer'
 
-const cStore = createStore(WidgetReducer);
+/*
+const store = createStore(WidgetReducer)
+*/
+
+const courseService= CourseService.getInstance();
 
 class CourseEditor extends React.Component {
     constructor(props) {
@@ -41,9 +45,11 @@ class CourseEditor extends React.Component {
                 lesson: course.modules[0].lessons[0],
                 lessons: course.modules[0].lessons,
                 topic: course.modules[0].lessons[0].topics[0],
-                topicsS: course.modules[0].lessons[0].topics
+                topicsS: course.modules[0].lessons[0].topics,
+                widgets:course.modules[0].lessons[0].topics[0].widgets
             }
         }
+        console.log(this.state.widgets)
     }
 
     selectModule = module => {
@@ -53,7 +59,8 @@ class CourseEditor extends React.Component {
                 lesson: module.lessons[0],
                 lessons: module.lessons,
                 topic: module.lessons[0].topics[0],
-                topicsS: module.lessons[0].topics
+                topicsS: module.lessons[0].topics,
+                widgets:module.lessons[0].topics[0].widgets
             })
         } else {
             this.setState({
@@ -147,22 +154,6 @@ class CourseEditor extends React.Component {
         return false;
     }
 
-    addLesson = (lessonToAdd) => {
-        console.log(lessonToAdd)
-        this.setState({
-                lessons: [this.state.module.lessons.push(lessonToAdd)]
-            }
-        )
-        /*this.setState(
-            {
-                lessons: [
-                    ...this.state.module.lessons,
-                    lessonToAdd.lesson
-                ]
-            }
-        )*/
-        console.log(this.state.lessons)
-    }
 
     createTopic = (topicPassed) => {
         console.log(topicPassed)
@@ -190,14 +181,34 @@ class CourseEditor extends React.Component {
     }
 
     selectTopic = (topicSelected) => {
+       let widgets = topicSelected.widgets
         this.setState(
             {
-                topic:topicSelected
+                topic:topicSelected,
+                widgets: widgets
             }
         )
     }
 
+
+
+
     render() {
+
+        console.log("BEFOORE SENDING : "+this.state.widgets.length)
+        let x = this.state.widgets
+
+
+        console.log(x)
+        console.log("X len : "+x.length)
+
+        const cStore = createStore(WidgetReducer);
+
+        cStore.dispatch(
+            {type: "LOAD", widgets: this.state.widgets,
+            courseService : this.courseService,
+                topicId: this.state.topicId}
+            )
         return (
             <div className="container-fluid pt-4 mt-4">
                 <div className="row">
@@ -228,9 +239,9 @@ class CourseEditor extends React.Component {
                                         selectTopic={this.selectTopic}
                             />
                         }
-                        {/*<Forms/>*/}
+
                         <Provider store={cStore}>
-                            <WidgetListContainer/>
+                            <WidgetListContainer widgets={this.state.widgets} />
                         </Provider>
                     </div>
 

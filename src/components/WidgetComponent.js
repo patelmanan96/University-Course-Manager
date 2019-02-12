@@ -8,7 +8,7 @@ import LinkWidget from "./LinkWidget";
 
 
 
-const WidgetComponent = ({widget, deleteWidget, updateWidget}) =>
+const WidgetComponent = ({widget, deleteWidget, updateWidget, moveUp, moveDown}) =>
         <div>
             <div className="row p-3">
                 <div className="col-12">
@@ -59,23 +59,23 @@ const WidgetComponent = ({widget, deleteWidget, updateWidget}) =>
                                 </div>
 
                                 {
-                                    widget.type==='HEADING' && <HeadingWidget updateWidget={updateWidget} widget={widget}/>
+                                    widget.type==='HEADING' && <HeadingWidget moveUp={moveUp} moveDown = {moveDown} updateWidget={updateWidget} widget={widget}/>
 
                                     ||
 
-                                    widget.type==='IMAGE' && <ImageWidget updateWidget={updateWidget} widget={widget}/>
+                                    widget.type==='IMAGE' && <ImageWidget moveUp={moveUp} moveDown = {moveDown} updateWidget={updateWidget} widget={widget}/>
 
                                     ||
 
-                                    widget.type==='PARAGRAPH' && <ParagraphWidget updateWidget={updateWidget} widget={widget}/>
+                                    widget.type==='PARAGRAPH' && <ParagraphWidget moveUp={moveUp} moveDown = {moveDown} updateWidget={updateWidget} widget={widget}/>
 
                                     ||
 
-                                    widget.type==='LIST' && <ListWidget updateWidget={updateWidget} widget={widget}/>
+                                    widget.type==='LIST' && <ListWidget moveUp={moveUp} moveDown = {moveDown} updateWidget={updateWidget} widget={widget}/>
 
                                     ||
 
-                                    widget.type==='LINK' && <LinkWidget updateWidget={updateWidget} widget={widget}/>
+                                    widget.type==='LINK' && <LinkWidget moveUp={moveUp} moveDown = {moveDown} updateWidget={updateWidget} widget={widget}/>
                                 }
 
                             </div>

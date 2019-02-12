@@ -13,11 +13,41 @@
             "topics": [
               {
                 "id": 1,
-                "title": "Topic 1"
+                "title": "Topic 1",
+                "widgets": [
+                  {
+                    "id": 11,
+                    "type": "HEADING",
+                    "size": 1,
+                    "text": "The Document Object Model"
+                  },
+                  {
+                    "id": 12,
+                    "type": "PARAGRAPH",
+                    "text": "This topic introduces the DOM"
+                  },
+                  {
+                    "id": 13,
+                    "type": "LIST",
+                    "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
+                  },
+                  {
+                    "id": 14,
+                    "type": "IMAGE",
+                    "src": "https://picsum.photos/200"
+                  },
+                  {
+                    "id": 15,
+                    "type": "LINK",
+                    "title": "The DOM",
+                    "href": "https://en.wikipedia.org/wiki/Document_Object_Model"
+                  }
+                ]
               },
               {
                 "id": 2,
-                "title": "Topic 2"
+                "title": "Topic 2",
+                "widgets": []
               }
             ]
           },
@@ -27,11 +57,13 @@
             "topics": [
               {
                 "id": 3,
-                "title": "Topic 3"
+                "title": "Topic 3",
+                "widgets": []
               },
               {
                 "id": 4,
-                "title": "Topic 4"
+                "title": "Topic 4",
+                "widgets": []
               }
             ]
           }
@@ -47,7 +79,8 @@
             "topics": [
               {
                 "id": 1,
-                "title": "Topic 1"
+                "title": "Topic 1",
+                "widgets": []
               }
             ]
           },
@@ -57,7 +90,8 @@
             "topics": [
               {
                 "id": 1,
-                "title": "Topic 1"
+                "title": "Topic 1",
+                "widgets": []
               }
             ]
           }
@@ -79,7 +113,8 @@
             "topics": [
               {
                 "id": 1,
-                "title": "Topic 1"
+                "title": "Topic 1",
+                "widgets": []
               }
             ]
           },
@@ -89,7 +124,8 @@
             "topics": [
               {
                 "id": 1,
-                "title": "Topic 1"
+                "title": "Topic 1",
+                "widgets": []
               }
             ]
           }
@@ -105,7 +141,8 @@
             "topics": [
               {
                 "id": 1,
-                "title": "Topic 1"
+                "title": "Topic 1",
+                "widgets": []
               }
             ]
           },
@@ -115,7 +152,8 @@
             "topics": [
               {
                 "id": 1,
-                "title": "Topic 1"
+                "title": "Topic 1",
+                "widgets": []
               }
             ]
           }
@@ -137,7 +175,8 @@
             "topics": [
               {
                 "id": 1,
-                "title": "Topic 1"
+                "title": "Topic 1",
+                "widgets": []
               }
             ]
           },
@@ -147,7 +186,8 @@
             "topics": [
               {
                 "id": 1,
-                "title": "Topic 1"
+                "title": "Topic 1",
+                "widgets": []
               }
             ]
           }
@@ -163,7 +203,8 @@
             "topics": [
               {
                 "id": 1,
-                "title": "Topic 1"
+                "title": "Topic 1",
+                "widgets": []
               }
             ]
           },
@@ -173,7 +214,8 @@
             "topics": [
               {
                 "id": 1,
-                "title": "Topic 1"
+                "title": "Topic 1",
+                "widgets": []
               }
             ]
           }

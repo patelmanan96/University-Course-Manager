@@ -10,7 +10,15 @@ class LessonTabs extends React.Component {
                 topics: [
                     {
                         id: (new Date()).getTime(),
-                        title: 'Topic 1'
+                        title: 'Topic 1',
+                        widgets:[
+                            {
+                                id: (new Date()).getTime(),
+                                type: "HEADING",
+                                size: 1,
+                                text: "WIDGET TEXT"
+                            }
+                        ]
                     }
                 ]
             },
@@ -28,7 +36,15 @@ class LessonTabs extends React.Component {
                         topics: [
                             {
                                 id: (new Date()).getTime(),
-                                title: 'Topic 1'
+                                title: 'Topic 1',
+                                widgets:[
+                                    {
+                                        id: (new Date()).getTime(),
+                                        type: "HEADING",
+                                        size: 1,
+                                        text: "WIDGET TEXT"
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -42,7 +58,15 @@ class LessonTabs extends React.Component {
                         topics: [
                             {
                                 id: (new Date()).getTime(),
-                                title: 'Topic 1'
+                                title: 'Topic 1',
+                                widgets:[
+                                    {
+                                        id: (new Date()).getTime(),
+                                        type: "HEADING",
+                                        size: 1,
+                                        text: "WIDGET TEXT"
+                                    }
+                                ]
                             }
                         ]
                     }

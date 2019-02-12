@@ -7,7 +7,8 @@ class TopicPills extends React.Component {
             topic:
                 {
                     id: (new Date()).getTime(),
-                    title: 'New Topic'
+                    title: 'New Topic',
+                    widgets:[]
                 }
         }
     }
@@ -18,7 +19,8 @@ class TopicPills extends React.Component {
             this.state = {
                 topic: {
                     id: (new Date()).getTime(),
-                    title: tName
+                    title: tName,
+                    widgets:[]
                 }
             }
         }
@@ -26,7 +28,8 @@ class TopicPills extends React.Component {
                 this.state = {
                     topic: {
                         id: (new Date()).getTime(),
-                        title: 'New Topic'
+                        title: 'New Topic',
+                        widgets:[]
                     }
                 }
         }
