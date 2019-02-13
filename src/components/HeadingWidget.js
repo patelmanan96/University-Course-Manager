@@ -7,9 +7,9 @@ const HeadingWidget = ({widget, updateWidget}) =>
         <div className="container p-2">
             <div className="form-group row">
                 <div className="col-sm-12">
-                    <input className="form-control" defaultValue={widget.text}
+                    <input className="form-control" defaultValue={widget.headingText}
                            onChange={event => {
-                               widget.text = event.target.value;
+                               widget.headingText = event.target.value;
                                updateWidget(widget)
                            }}
                            id="headingT"
@@ -58,11 +58,11 @@ const HeadingWidget = ({widget, updateWidget}) =>
             <div className="form-group row">
                 <div className="col-sm-12">
                     {
-                        widget.size === 1 && <h1>{widget.text}</h1> ||
-                        widget.size === 2 && <h2>{widget.text}</h2> ||
-                        widget.size === 3 && <h3>{widget.text}</h3> ||
-                        widget.size === 4 && <h4>{widget.text}</h4> ||
-                        widget.size === 5 && <h5>{widget.text}</h5>
+                        widget.size === 1 && <h1>{widget.headingText}</h1> ||
+                        widget.size === 2 && <h2>{widget.headingText}</h2> ||
+                        widget.size === 3 && <h3>{widget.headingText}</h3> ||
+                        widget.size === 4 && <h4>{widget.headingText}</h4> ||
+                        widget.size === 5 && <h5>{widget.headingText}</h5>
                     }
                 </div>
             </div>

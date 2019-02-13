@@ -7,20 +7,21 @@ const ListWidget = ({widget,updateWidget}) =>
                 <div className="col-sm-12">
                     <textarea
                         onChange={event => {
-                            widget.text = event.target.value;
+                            widget.listItems = event.target.value;
+                            widget.listArray = widget.listItems.split('\n')
                             updateWidget(widget)
                         }}
-                        className="form-control">Items</textarea>
+                        className="form-control">{widget.listItems}</textarea>
                 </div>
             </div>
 
             <div className="form-group row">
                 <div className="col-sm-12">
                     <select className="form-control">
-                        <option value="Heading">
+                        <option value="">
                             Unordered List
                         </option>
-                        <option value="Paragraph">
+                        <option value="" >
                             Ordered List
                         </option>
                     </select>
@@ -42,9 +43,14 @@ const ListWidget = ({widget,updateWidget}) =>
             <div className="form-group row">
                 <div className="col-sm-12">
                     <p>
-                        <ul>
-                            <li>Items</li>
-                        </ul>
+                        {
+                              widget.listArray.map(wid =>
+                                <ul>
+                                    <li>{wid}</li>
+                                </ul>
+                            )
+                        }
+
                     </p>
                 </div>
             </div>

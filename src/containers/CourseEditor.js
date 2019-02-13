@@ -15,6 +15,7 @@ const store = createStore(WidgetReducer)
 */
 
 const courseService= CourseService.getInstance();
+const cStore = createStore(WidgetReducer);
 
 class CourseEditor extends React.Component {
     constructor(props) {
@@ -190,6 +191,22 @@ class CourseEditor extends React.Component {
         )
     }
 
+    addLesson = (lessonToAdd) => {
+        console.log(lessonToAdd)
+        this.setState({
+                lessons: [this.state.module.lessons.push(lessonToAdd)]
+            }
+        )
+        /*this.setState(
+            {
+                lessons: [
+                    ...this.state.module.lessons,
+                    lessonToAdd.lesson
+                ]
+            }
+        )*/
+        console.log(this.state.lessons)
+    }
 
 
 
@@ -202,13 +219,16 @@ class CourseEditor extends React.Component {
         console.log(x)
         console.log("X len : "+x.length)
 
-        const cStore = createStore(WidgetReducer);
+
 
         cStore.dispatch(
             {type: "LOAD", widgets: this.state.widgets,
             courseService : this.courseService,
                 topicId: this.state.topicId}
             )
+
+        // load state using course Service
+        // save using course Service
         return (
             <div className="container-fluid pt-4 mt-4">
                 <div className="row">

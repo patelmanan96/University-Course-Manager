@@ -17,7 +17,7 @@ const widgets =
             }
         ]
     }
-const widgetReducer = (state = {widgets: []}, action) => {
+const widgetReducer = (state, action) => {
     console.log(state)
     switch(action.type) {
         case 'DELETE_WIDGET':

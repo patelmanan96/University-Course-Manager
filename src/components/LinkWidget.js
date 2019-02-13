@@ -17,7 +17,7 @@ const LinkWidget = ({widget,updateWidget}) =>
             <div className="form-group row">
                 <div className="col-sm-12">
                     <input className="form-control" onChange={event => {
-                        widget.text = event.target.value;
+                        widget.linkText = event.target.value;
                         updateWidget(widget)
                     }
                     } type="text" placeholder="Link Text"/>
@@ -38,7 +38,7 @@ const LinkWidget = ({widget,updateWidget}) =>
             </div>
             <div className="form-group row">
                 <div className="col-sm-12">
-                    <a target="_blank" href={"https://"+widget.url}>{widget.text}</a>
+                    <a target="_blank" href={"https://"+widget.url}>{widget.linkText}</a>
                 </div>
             </div>
         </div>

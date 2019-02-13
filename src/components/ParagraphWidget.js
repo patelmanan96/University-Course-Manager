@@ -7,7 +7,7 @@ const ParagraphWidget = ({widget,updateWidget}) =>
             <div className="form-group row">
                 <div className="col-sm-12">
                     <textarea onChange={event => {
-                        widget.text = event.target.value;
+                        widget.paraText = event.target.value;
                         updateWidget(widget)
                     }}
                               className="form-control">Type Paragraph Here...</textarea>
@@ -28,7 +28,7 @@ const ParagraphWidget = ({widget,updateWidget}) =>
             </div>
             <div className="form-group row">
                 <div className="col-sm-12">
-                    <p>{widget.text}</p>
+                    <p>{widget.paraText}</p>
                 </div>
             </div>
         </div>
