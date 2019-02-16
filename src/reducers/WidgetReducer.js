@@ -41,7 +41,8 @@ const widgetReducer = (state, action) => {
                         id: (new Date()).getTime(),
                         type: 'HEADING',
                         size: 1,
-                        text: 'New Widget'
+                        text: 'New Widget',
+                        toggle : false
                     }
                 ],
                 courseService: state.courseService,
@@ -101,6 +102,26 @@ const widgetReducer = (state, action) => {
             newState.widgets = action.widgets
             console.log(newState)
             return newState
+
+        case 'PREVIEW_OFF': {
+
+           state.widgets.map(widget =>widget.toggle = false)
+            state.widgets = state.widgets.map(widget => {
+                return Object.assign({}, widget)
+            })
+            return {
+                widgets: state.widgets
+            }
+        }
+
+        case 'PREVIEW_ON':
+            state.widgets.map(widget =>widget.toggle = true)
+            state.widgets = state.widgets.map(widget => {
+                return Object.assign({}, widget)
+            })
+            return {
+                widgets: state.widgets
+            }
 
 
         default:

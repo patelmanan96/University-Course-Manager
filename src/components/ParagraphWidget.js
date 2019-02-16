@@ -4,28 +4,32 @@ const ParagraphWidget = ({widget,updateWidget}) =>
 
     <div className="col-12">
         <div className="container p-2">
-            <div className="form-group row">
-                <div className="col-sm-12">
+            {
+                widget.toggle === false && <div>
+                    <div className="form-group row">
+                        <div className="col-sm-12">
                     <textarea onChange={event => {
                         widget.paraText = event.target.value;
                         updateWidget(widget)
                     }}
                               className="form-control">{widget.paraText}</textarea>
-                </div>
-            </div>
+                        </div>
+                    </div>
 
-            <div className="form-group row">
-                <div className="col-sm-12">
-                    <input className="form-control"
-                           id="widgetNP"
-                           placeholder="Widget Name"/>
+                    <div className="form-group row">
+                        <div className="col-sm-12">
+                            <input className="form-control"
+                                   id="widgetNP"
+                                   placeholder="Widget Name"/>
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <div className="col-sm-12">
+                            <h4>Preview</h4>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className="form-group row">
-                <div className="col-sm-12">
-                    <h4>Preview</h4>
-                </div>
-            </div>
+            }
             <div className="form-group row">
                 <div className="col-sm-12">
                     <p>{widget.paraText}</p>

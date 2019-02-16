@@ -3,8 +3,10 @@ import React from 'react'
 const ListWidget = ({widget, updateWidget}) =>
     <div className="col-12">
         <div className="container p-2">
-            <div className="form-group row">
-                <div className="col-sm-12">
+            {
+                widget.toggle === false && <div>
+                    <div className="form-group row">
+                        <div className="col-sm-12">
                     <textarea
                         onChange={event => {
                             widget.listItems = event.target.value;
@@ -12,39 +14,41 @@ const ListWidget = ({widget, updateWidget}) =>
                             updateWidget(widget)
                         }}
                         className="form-control">{widget.listItems}</textarea>
-                </div>
-            </div>
+                        </div>
+                    </div>
 
-            <div className="form-group row">
-                <div className="col-sm-12">
-                    <select className="form-control" onChange={event => {
-                        widget.listType = event.target.value;
-                        updateWidget(widget);
-                    }}
-                            value={widget.listType}
-                    >
-                        <option value="unordered">
-                            Unordered List
-                        </option>
-                        <option value="ordered">
-                            Ordered List
-                        </option>
-                    </select>
-                </div>
-            </div>
+                    <div className="form-group row">
+                        <div className="col-sm-12">
+                            <select className="form-control" onChange={event => {
+                                widget.listType = event.target.value;
+                                updateWidget(widget);
+                            }}
+                                    value={widget.listType}
+                            >
+                                <option value="unordered">
+                                    Unordered List
+                                </option>
+                                <option value="ordered">
+                                    Ordered List
+                                </option>
+                            </select>
+                        </div>
+                    </div>
 
-            <div className="form-group row">
-                <div className="col-sm-12">
-                    <input className="form-control"
-                           id="widgetL"
-                           placeholder="Widget Name"/>
+                    <div className="form-group row">
+                        <div className="col-sm-12">
+                            <input className="form-control"
+                                   id="widgetL"
+                                   placeholder="Widget Name"/>
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <div className="col-sm-12">
+                            <h4>Preview</h4>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className="form-group row">
-                <div className="col-sm-12">
-                    <h4>Preview</h4>
-                </div>
-            </div>
+            }
             <div className="form-group row">
                 <div className="col-sm-12">
                     {

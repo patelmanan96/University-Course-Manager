@@ -46,6 +46,18 @@ const dispatchToPropertyMapper = (dispatch, props) => ({
             widget: widget
         })
     },
+    previewOn: () =>{
+        console.log("P ON")
+        dispatch({
+            type: 'PREVIEW_ON'
+        })
+    },
+    previewOff: () =>{
+        console.log("P OFF")
+        dispatch({
+            type: 'PREVIEW_OFF'
+        })
+    },
     save: widgets => {
         console.log("T ID : "+props.topicId)
         courseService.createWidget(props.topicId,widgets);
