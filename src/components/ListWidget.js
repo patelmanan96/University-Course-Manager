@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ListWidget = ({widget,updateWidget}) =>
+const ListWidget = ({widget, updateWidget}) =>
     <div className="col-12">
         <div className="container p-2">
             <div className="form-group row">
@@ -17,11 +17,16 @@ const ListWidget = ({widget,updateWidget}) =>
 
             <div className="form-group row">
                 <div className="col-sm-12">
-                    <select className="form-control">
-                        <option value="">
+                    <select className="form-control" onChange={event => {
+                        widget.listType = event.target.value;
+                        updateWidget(widget);
+                    }}
+                            value={widget.listType}
+                    >
+                        <option value="unordered">
                             Unordered List
                         </option>
-                        <option value="" >
+                        <option value="ordered">
                             Ordered List
                         </option>
                     </select>
@@ -42,16 +47,36 @@ const ListWidget = ({widget,updateWidget}) =>
             </div>
             <div className="form-group row">
                 <div className="col-sm-12">
-                    <p>
-                        {
-                              widget.listArray.map(wid =>
+                    {
+                        widget.listItems === undefined && <p></p>
+                    }
+                    {
+                        widget.listItems !== undefined && <p onLoad={widget.listArray = widget.listItems.split('\n')}>
+                            {
+                                widget.listType === 'unordered' &&
                                 <ul>
-                                    <li>{wid}</li>
+                                    {
+                                        widget.listArray.map(wid =>
+                                            <li>{wid}</li>
+                                        )
+                                    }
                                 </ul>
-                            )
-                        }
+                                ||
+                                widget.listType === 'ordered' &&
+                                <ol>
+                                    {
 
-                    </p>
+                                        widget.listArray.map(wid =>
+
+                                            <li>{wid}</li>
+                                        )
+                                    }
+                                </ol>
+                            }
+                        </p>
+                    }
+
+
                 </div>
             </div>
         </div>

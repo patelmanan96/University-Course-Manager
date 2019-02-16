@@ -22,10 +22,10 @@ const WidgetComponent = ({widget, deleteWidget, updateWidget, moveUp, moveDown})
                                     <h3>{widget.type} WIDGET</h3>
                                 </div>
                                 <div className="col-2 p-1">
-                                    <button className="btn btn-warning btn-md">
+                                    <button className="btn btn-warning btn-md" onClick={() => moveDown(widget)}>
                                         <i className="fa fa-arrow-down" aria-hidden="true"></i>
                                     </button>
-                                    <button className="btn btn-warning btn-md">
+                                    <button className="btn btn-warning btn-md" onClick={() => moveUp(widget)}>
                                         <i className="fa fa-arrow-up" aria-hidden="true"></i>
                                     </button>
                                 </div>

@@ -12,25 +12,24 @@
             "title": "Lesson 1",
             "topics": [
               {
-                "id": 1,
+                "id": 1778,
                 "title": "Topic 1",
                 "widgets": [
                   {
                     "id": 11,
                     "type": "HEADING",
                     "size": 1,
-                    "text": "The Document Object Model"
+                    "headingText": "The Document Object Model"
                   },
                   {
                     "id": 12,
                     "type": "PARAGRAPH",
-                    "text": "This topic introduces the DOM"
+                    "paraText": "This topic introduces the DOM"
                   },
                   {
                     "id": 13,
                     "type": "LIST",
-                    "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes",
-                    "listArray" : ["One","Two","Three"],
+                    "listItems": "Nodes \n Attributes \n Tag \n names \n IDs \nStyles\nClasses",
                     "listType": "unordered"
                   },
                   {
@@ -41,8 +40,8 @@
                   {
                     "id": 15,
                     "type": "LINK",
-                    "title": "The DOM",
-                    "href": "https://en.wikipedia.org/wiki/Document_Object_Model"
+                    "linkText": "The DOM",
+                    "url": "https://en.wikipedia.org/wiki/Document_Object_Model"
                   }
                 ]
               },

@@ -6,7 +6,7 @@ const LinkWidget = ({widget,updateWidget}) =>
 
             <div className="form-group row">
                 <div className="col-sm-12">
-                    <input className="form-control" placeholder="www.google.com"
+                    <input className="form-control" placeholder="www.google.com" value={widget.url}
                            onChange={event => {
                                widget.url = event.target.value;
                                updateWidget(widget)
@@ -20,7 +20,7 @@ const LinkWidget = ({widget,updateWidget}) =>
                         widget.linkText = event.target.value;
                         updateWidget(widget)
                     }
-                    } type="text" placeholder="Link Text"/>
+                    } type="text" placeholder="Link Text" value={widget.linkText}/>
                 </div>
             </div>
 

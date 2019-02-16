@@ -1,12 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import WidgetList from '../components/WidgetList'
+import CourseService from "../services/CourseService";
+
+const courseService = new CourseService();
 
 const stateToPropertyMapper = state => ({
     widgets: state.widgets
 })
 
-const dispatchToPropertyMapper = (dispatch, widgets) => ({
+const dispatchToPropertyMapper = (dispatch, props) => ({
 
     deleteWidget: widget =>
         dispatch({
@@ -23,30 +26,35 @@ const dispatchToPropertyMapper = (dispatch, widgets) => ({
             type: 'UPDATE_WIDGET',
             widget: widget
         }),
-    moveUp: widget =>
+    moveUp: (widget,widgets) => {
+        /*console.log("BEFORE : ")
+        console.log(courseService.findWidgets(props.topicId))
+        courseService.moveUp(props.topicId,widget)
+        console.log("AFTER : ")
+        console.log(courseService.findWidgets(props.topicId))*/
+
         dispatch({
-            type:'MOVE_UP',
-            widget:widget
-        }),
+            type: 'MOVE_UP',
+            currentWidget : widget
+        })
+    },
     moveDown: widget =>
         dispatch({
             type: 'MOVE_DOWN',
-            widget:widget
+            widget: widget
         }),
-    loadWidgets: widgets =>
-        dispatch({
-            type: 'LOAD',
-            widget:widgets
-        }),
+    save: widgets => {
+        console.log("T ID : "+props.topicId)
+        courseService.createWidget(props.topicId,widgets);
+    },
 
 })
 
 
-
-const WidgetListContainer  =
+const WidgetListContainer =
     connect(
-    stateToPropertyMapper,
-    dispatchToPropertyMapper
-)(WidgetList)
+        stateToPropertyMapper,
+        dispatchToPropertyMapper
+    )(WidgetList)
 
 export default WidgetListContainer;

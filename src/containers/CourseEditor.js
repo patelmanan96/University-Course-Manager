@@ -219,7 +219,13 @@ class CourseEditor extends React.Component {
         console.log(x)
         console.log("X len : "+x.length)
 
-
+        /*{
+            this.setState(
+                {
+                    state: courseService.findWidgets(this.state.topicId)
+                }
+            )
+        }*/
 
         cStore.dispatch(
             {type: "LOAD", widgets: this.state.widgets,
@@ -230,6 +236,7 @@ class CourseEditor extends React.Component {
         // load state using course Service
         // save using course Service
         return (
+
             <div className="container-fluid pt-4 mt-4">
                 <div className="row">
                     <CourseEditorNavBar title={this.state.course.title}/>
@@ -259,9 +266,9 @@ class CourseEditor extends React.Component {
                                         selectTopic={this.selectTopic}
                             />
                         }
-
                         <Provider store={cStore}>
-                            <WidgetListContainer widgets={this.state.widgets} />
+                            <WidgetListContainer widgets={this.state.widgets} topicId = {this.state.topic.id}
+                            />
                         </Provider>
                     </div>
 

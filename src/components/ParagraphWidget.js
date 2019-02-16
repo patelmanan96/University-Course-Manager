@@ -10,7 +10,7 @@ const ParagraphWidget = ({widget,updateWidget}) =>
                         widget.paraText = event.target.value;
                         updateWidget(widget)
                     }}
-                              className="form-control">Type Paragraph Here...</textarea>
+                              className="form-control">{widget.paraText}</textarea>
                 </div>
             </div>
 

@@ -19,16 +19,16 @@ const widgets =
     }
 const widgetReducer = (state, action) => {
     console.log(state)
-    switch(action.type) {
+    switch (action.type) {
         case 'DELETE_WIDGET':
             return {
                 widgets: state.widgets.filter(widget => widget.id !== action.widget.id),
-                courseService : state.courseService,
-                topicId:state.topicId
+                courseService: state.courseService,
+                topicId: state.topicId
             }
 
         case 'ADD_WIDGET':
-            action.widgets = action.widgets.map(widget =>{
+            action.widgets = action.widgets.map(widget => {
                 return Object.assign({}, widget)
             })
             console.log("add")
@@ -40,12 +40,12 @@ const widgetReducer = (state, action) => {
                     {
                         id: (new Date()).getTime(),
                         type: 'HEADING',
-                        text: 'New Widget',
-                        size: 1
+                        size: 1,
+                        text: 'New Widget'
                     }
                 ],
-                courseService : state.courseService,
-                topicId:state.topicId
+                courseService: state.courseService,
+                topicId: state.topicId
 
             }
 
@@ -55,23 +55,39 @@ const widgetReducer = (state, action) => {
                 widgets: state.widgets.map(widget =>
                     widget.id === action.widget.id ? action.widget : widget
                 ),
-                courseService : state.courseService,
-                topicId:state.topicId
+                courseService: state.courseService,
+                topicId: state.topicId
             }
-        case 'MOVE_UP':
-            return{
 
-            }
+        case 'MOVE_UP': {
+            console.log("INSIDE RED MOVE UP")
+            console.log(action.currentWidget);
+            console.log(state.widgets)
+            console.log(state.widgets.indexOf(action.currentWidget))
+
+            let cId = state.widgets.indexOf(action.currentWidget)
+
+            state.widgets.move(cId, cId - 1)
+
+            let n = Object.assign({}, state)
+
+            state.widgets = state.widgets.map(widget => {
+                return Object.assign({}, widget)
+            })
+        }
+
         case 'MOVE_DOWN':
-            return{
-
+            return {
+                widgets: state.widgets
             }
+
         case 'LOAD':
             console.log("here")
             let newState = Object.assign({}, state);
             newState.widgets = action.widgets
             console.log(newState)
             return newState
+
 
         default:
             return state;

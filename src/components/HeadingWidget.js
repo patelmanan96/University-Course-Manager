@@ -18,7 +18,7 @@ const HeadingWidget = ({widget, updateWidget}) =>
             </div>
             <div className="form-group row">
                 <div className="col-sm-12">
-                    <select className="form-control"
+                    <select className="form-control" value={widget.size}
                             onChange={
                                 event => {
                                     widget.size = parseInt(event.target.value);
