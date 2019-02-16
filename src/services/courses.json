@@ -46,7 +46,7 @@
                     "type": "LINK",
                     "linkText": "The DOM",
                     "url": "https://en.wikipedia.org/wiki/Document_Object_Model",
-                    "toggle": fals
+                    "toggle": false
 
                   }
                 ]
