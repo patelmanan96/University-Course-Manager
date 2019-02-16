@@ -19,29 +19,35 @@
                     "id": 11,
                     "type": "HEADING",
                     "size": 1,
-                    "headingText": "The Document Object Model"
+                    "headingText": "The Document Object Model",
+                    "toggle": false
                   },
                   {
                     "id": 12,
                     "type": "PARAGRAPH",
-                    "paraText": "This topic introduces the DOM"
+                    "paraText": "This topic introduces the DOM",
+                    "toggle": false
                   },
                   {
                     "id": 13,
                     "type": "LIST",
                     "listItems": "Nodes \n Attributes \n Tag \n names \n IDs \nStyles\nClasses",
-                    "listType": "unordered"
+                    "listType": "unordered",
+                    "toggle": false
                   },
                   {
                     "id": 14,
                     "type": "IMAGE",
-                    "src": "https://picsum.photos/200"
+                    "src": "https://picsum.photos/200",
+                    "toggle": false
                   },
                   {
                     "id": 15,
                     "type": "LINK",
                     "linkText": "The DOM",
-                    "url": "https://en.wikipedia.org/wiki/Document_Object_Model"
+                    "url": "https://en.wikipedia.org/wiki/Document_Object_Model",
+                    "toggle": fals
+
                   }
                 ]
               },

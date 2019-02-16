@@ -38,11 +38,14 @@ const dispatchToPropertyMapper = (dispatch, props) => ({
             currentWidget : widget
         })
     },
-    moveDown: widget =>
+    moveDown: widget =>{
+        console.log("WIDGET TO MOVE DOWN")
+        console.log(widget);
         dispatch({
             type: 'MOVE_DOWN',
             widget: widget
-        }),
+        })
+    },
     save: widgets => {
         console.log("T ID : "+props.topicId)
         courseService.createWidget(props.topicId,widgets);

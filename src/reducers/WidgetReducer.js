@@ -69,17 +69,31 @@ const widgetReducer = (state, action) => {
 
             state.widgets.move(cId, cId - 1)
 
-            let n = Object.assign({}, state)
+            state.widgets = state.widgets.map(widget => {
+                return Object.assign({}, widget)
+            })
+            return {
+                widgets:state.widgets
+            }
+        }
+
+        case 'MOVE_DOWN': {
+            console.log("MD REDUCER")
+            console.log(action.widget)
+            let cId = state.widgets.indexOf(action.widget)
+
+            state.widgets.move(cId, cId + 1)
+
+            console.log(state.widgets)
 
             state.widgets = state.widgets.map(widget => {
                 return Object.assign({}, widget)
             })
-        }
 
-        case 'MOVE_DOWN':
             return {
                 widgets: state.widgets
             }
+        }
 
         case 'LOAD':
             console.log("here")

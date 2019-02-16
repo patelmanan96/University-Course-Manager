@@ -5,6 +5,7 @@ const HeadingWidget = ({widget, updateWidget}) =>
 
     <div className="col-12">
         <div className="container p-2">
+
             <div className="form-group row">
                 <div className="col-sm-12">
                     <input className="form-control" defaultValue={widget.headingText}
