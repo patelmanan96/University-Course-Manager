@@ -20,7 +20,8 @@ class ModuleList extends React.Component {
                                     id: (new Date()).getTime(),
                                     type: "HEADING",
                                     size: 1,
-                                    text: "WIDGET TEXT"
+                                    headingText: "The Document Object Model",
+                                    toggle: false
                                 }
                             ]
                         }]

@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
-import CourseGrid from './CourseGrid'
-import CourseTable from '../containers/CourseTable'
+import CourseGrid from '../components/CourseGrid'
+import CourseTable from './CourseTable'
 import CourseService from '../services/CourseService'
-import CourseEditor from "../containers/CourseEditor";
-import NavBar from "./NavBar";
+import CourseEditor from "./CourseEditor";
+import NavBar from "../components/NavBar";
 
 class WhiteBoard extends Component {
     constructor() {
