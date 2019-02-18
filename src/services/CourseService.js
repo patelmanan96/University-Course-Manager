@@ -1,10 +1,5 @@
 import courses from './courses.json'
 
-Array.prototype.move
-    = function (from, to) {
-    this.splice(to, 0, this.splice(from, 1)[0]);
-};
-
 class CourseService {
     constructor() {
         this.courses = courses;
@@ -59,6 +54,8 @@ class CourseService {
         this.courses = this.courses.find(
             course => course.id === courseId
         )
+
+
 
     findAllCourses = () =>
         this.courses;

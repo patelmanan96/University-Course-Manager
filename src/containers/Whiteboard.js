@@ -5,6 +5,9 @@ import CourseTable from './CourseTable'
 import CourseService from '../services/CourseService'
 import CourseEditor from "./CourseEditor";
 import NavBar from "../components/NavBar";
+import LoginComponent from "../components/LoginComponent";
+import SignUp from "../components/SignUp";
+import Profile from "../components/Profile";
 
 class WhiteBoard extends Component {
     constructor() {
@@ -32,13 +35,18 @@ class WhiteBoard extends Component {
             <div>
                 <Router>
                     <div>
+                        <Route path='/login' exact component={LoginComponent}/>
                         <Route path='/' exact render={() =>
-                            <div><NavBar addCourse={this.addCourse}/>
+                            <div><NavBar
+                                addCourse={this.addCourse}
+                            />
                                 <CourseGrid
                                     addCourse={this.addCourse}
                                     deleteCourse={this.deleteCourse}
                                     courses={this.state.courses}/></div>
                         }/>
+                        <Route path='/profile' exact component={Profile}/>
+                        <Route path='/signUp' exact component={SignUp}/>
                         <Route path="/course/:id"
                                exact
                                component={CourseEditor}/>

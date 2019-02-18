@@ -1,8 +1,13 @@
 import React from 'react';
+import {browserHistory} from 'react-router';
+import {Link} from 'react-router-dom';
+import UserService from "../services/UserService";
+
 
 class NavBar extends React.Component {
     constructor(props) {
         super(props);
+        this.userService = new UserService();
         this.state = {
             course:
                 {
@@ -17,7 +22,7 @@ class NavBar extends React.Component {
                             topics: [{
                                 id: (new Date()).getTime(),
                                 title: "Topic 1",
-                                widgets:[
+                                widgets: [
                                     {
                                         id: (new Date()).getTime(),
                                         type: "HEADING",
@@ -36,10 +41,9 @@ class NavBar extends React.Component {
 
     titleChange = (param) => {
         var text;
-        if(param.target.value === ""){
+        if (param.target.value === "") {
             text = 'New Course'
-        }
-        else{
+        } else {
             text = param.target.value;
         }
         this.setState(
@@ -57,7 +61,7 @@ class NavBar extends React.Component {
                                 topics: [{
                                     id: (new Date()).getTime(),
                                     title: "Topic 1",
-                                    widgets:[
+                                    widgets: [
                                         {
                                             id: (new Date()).getTime(),
                                             type: "HEADING",
@@ -73,6 +77,13 @@ class NavBar extends React.Component {
                     }
             });
     };
+    logout = () => {
+        this.userService.logoutCurrentUser().then(
+            function (val) {
+                alert("Log out Successful");
+            }
+        );
+    }
 
     render() {
         return (
@@ -95,6 +106,16 @@ class NavBar extends React.Component {
                                         className="btn-sm btn btn-outline-dark">
                                     <i className="fa fa-plus float-left fa-2x mt-2"></i>
                                 </button>
+                                <Link to={"/profile"}>
+                                    <button className="btn-sm btn">
+                                        <i className="fa fa-2x fa-user"></i>
+                                    </button>
+                                </Link>
+                                <Link to={"/login"}>
+                                    <button onClick={this.logout} className="btn-sm btn">
+                                        <i className="fa fa-2x fa-sign-out"></i>
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
