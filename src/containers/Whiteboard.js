@@ -17,7 +17,6 @@ class WhiteBoard extends Component {
             courses: this.courseService.findAllCourses()
         }
     }
-
     deleteCourse = course =>
         this.setState({
             courses: this.courseService.deleteCourse(course)
@@ -35,8 +34,8 @@ class WhiteBoard extends Component {
             <div>
                 <Router>
                     <div>
-                        <Route path='/login' exact component={LoginComponent}/>
-                        <Route path='/' exact render={() =>
+                        <Route path='/' exact component={LoginComponent}/>
+                        <Route path='/grid' exact render={() =>
                             <div><NavBar
                                 addCourse={this.addCourse}
                             />
@@ -52,13 +51,11 @@ class WhiteBoard extends Component {
                                component={CourseEditor}/>
                         <Route path='/table'
                                render={() => <div>
-                                   <NavBar addCourse={this.addCourse}/>
                                    <CourseTable courses={this.state.courses}
                                                 deleteCourse={this.deleteCourse}
                                                 addCourse={this.addCourse}
                                    />
-                               </div>
-                               }/>
+                               </div>}/>
                     </div>
                 </Router>
             </div>

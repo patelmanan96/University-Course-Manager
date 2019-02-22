@@ -1,23 +1,25 @@
 import React from 'react'
 import ModuleListItem from "./ModuleListItem";
+import ModuleService from "../services/ModuleService";
 
 class ModuleList extends React.Component {
     constructor(props) {
         super(props)
+        this.moduleService = new ModuleService();
 
         this.state = {
-            module: {id: (new Date()).getTime() ,
+            module: {id: parseInt((new Date().getMilliseconds() % 1000)) ,
                 title: 'New Module',
                 lessons:[
                     {
-                        id:(new Date()).getTime(),
+                        id:parseInt((new Date().getMilliseconds() % 1000) + 1),
                         title:'Lesson 1',
                         topics:[{
-                            id:(new Date()).getTime(),
+                            id:parseInt((new Date().getMilliseconds() % 1000) + 2),
                             title:'Topic 1',
                             widgets:[
                                 {
-                                    id: (new Date()).getTime(),
+                                    id: parseInt((new Date().getMilliseconds() % 1000) + 3),
                                     type: "HEADING",
                                     size: 1,
                                     headingText: "The Document Object Model",
@@ -28,34 +30,47 @@ class ModuleList extends React.Component {
                     }
                 ]
             },
-            modules: this.props.modules
         };
 
         // this.titleChanged = this.titleChanged.bind(this);
     }
 
     createModule = () => {
-        this.setState(
+        this.moduleService.createModule(this.props.courseId,this.state.module)
+        let t = this;
+        this.moduleService.loadModulesRest(this.props.courseId).then(
+            function (val) {
+                console.log("MOD REFRESH : ");
+                console.log(val)
+                t.setState(
+                    {
+                        modules:val
+                    }
+                )
+                t.props.refreshContent();
+            }
+        )
+        /*this.setState(
             {
                 modules: [
                     ...this.state.modules,
                     this.state.module
                 ]
             }
-        )
+        )*/
     }
     titleChanged = (event) => {
         this.setState(
             {
                 module: {
-                    id: (new Date()).getTime(),
+                    id: parseInt((new Date().getMilliseconds() % 1000) + 1),
                     title: event.target.value,
                     lessons: [
                         {
-                            id: (new Date()).getTime(),
+                            id: parseInt((new Date().getMilliseconds() % 1000) + 2),
                             title: 'Lesson 1',
                             topics:[{
-                                id:(new Date()).getTime(),
+                                id:parseInt((new Date().getMilliseconds() % 1000) + 3),
                                 title:'Topic 1',
                                 widgets:[]
                             }]
@@ -66,25 +81,30 @@ class ModuleList extends React.Component {
     }
 
     deleteModule = module => {
-        this.state.modules = this.state.modules.filter(
+        let t = this;
+        this.moduleService.deleteModuleRest(module).then(
+            function (cal) {
+                t.props.refreshContent();
+            }
+        )
+
+
+        /*this.state.modules = this.state.modules.filter(
             mod => mod.title !== module.title
         )
         console.log(this.state.modules)
-    }
+*/    }
 
     editModule = module => {
         let newName = prompt("ENTER NEW NAME FOR : " + module.title);
         if (newName !== "" && newName !== null) {
-            let xx = this.state.modules.find(mod => mod.title === module.title);
-            let index = this.state.modules.indexOf(xx);
-            this.state.modules[index].title = newName;
-            this.setState(
-                {
-                    modules: [
-                        ...this.state.modules
-                    ]
+            module.title = newName;
+            let t = this;
+            this.moduleService.updateModuleRest(module).then(
+                function () {
+                    t.props.refreshContent();
                 }
-            )
+            );
         }
     }
 
@@ -95,7 +115,7 @@ class ModuleList extends React.Component {
                 <ul className="nav flex-column nav-pills">
 
                     {
-                        this.state.modules.map(
+                        this.props.modules.map(
                             (module) => {
                                 return (
                                     <ModuleListItem

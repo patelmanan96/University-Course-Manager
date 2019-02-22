@@ -9,22 +9,26 @@ class NavBar extends React.Component {
         super(props);
         this.userService = new UserService();
         this.state = {
+            localTitle: ''
+        }
+        this.state = {
             course:
                 {
-                    id: (new Date()).getTime(),
+                    id: 0,
                     title: 'New Course',
+                    author: '',
                     modules: [{
-                        id: (new Date()).getTime(),
+                        id: parseInt((new Date().getMilliseconds() % 1000)),
                         title: "Module 1",
                         lessons: [{
-                            id: (new Date()).getTime(),
+                            id: parseInt((new Date().getMilliseconds() % 1000)),
                             title: "Lesson 1",
                             topics: [{
-                                id: (new Date()).getTime(),
+                                id: parseInt((new Date().getMilliseconds() % 1000)),
                                 title: "Topic 1",
                                 widgets: [
                                     {
-                                        id: (new Date()).getTime(),
+                                        id: parseInt((new Date().getMilliseconds() % 1000)),
                                         type: "HEADING",
                                         size: 1,
                                         headingText: "The Document Object Model",
@@ -37,6 +41,50 @@ class NavBar extends React.Component {
                     }]
                 }
         }
+
+    }
+
+    addCourseToRest = () => {
+
+        let t = this;
+        this.userService.currentUser().then(
+            function (user) {
+                t.state =
+                    {
+                        course:
+                            {
+                                id: 0,
+                                title: t.state.localTitle === undefined ? 'New Course':t.state.localTitle,
+                                author: user.username,
+                                modules: [{
+                                    id: parseInt((new Date().getMilliseconds() % 1000) + 1),
+                                    title: "Module 1",
+                                    lessons: [{
+                                        id: parseInt((new Date().getMilliseconds() % 1000) + 2),
+                                        title: "Lesson 1",
+                                        topics: [{
+                                            id: parseInt((new Date().getMilliseconds() % 1000) + 3),
+                                            title: "Topic 1",
+                                            widgets: [
+                                                {
+                                                    id: parseInt((new Date().getMilliseconds() % 1000) + 4),
+                                                    type: "HEADING",
+                                                    size: 1,
+                                                    headingText: "The Document Object Model",
+                                                    toggle: false
+                                                }
+                                            ]
+                                        }
+                                        ]
+                                    }]
+                                }]
+                            }
+                    }
+                t.props.addCourse(t.state.course);
+            }
+        )
+
+
     }
 
     titleChange = (param) => {
@@ -48,34 +96,9 @@ class NavBar extends React.Component {
         }
         this.setState(
             {
-                course:
-                    {
-                        id: (new Date()).getTime(),
-                        title: text,
-                        modules: [{
-                            id: (new Date()).getTime(),
-                            title: "Module 1",
-                            lessons: [{
-                                id: (new Date()).getTime(),
-                                title: "Lesson 1",
-                                topics: [{
-                                    id: (new Date()).getTime(),
-                                    title: "Topic 1",
-                                    widgets: [
-                                        {
-                                            id: (new Date()).getTime(),
-                                            type: "HEADING",
-                                            size: 1,
-                                            headingText: "The Document Object Model",
-                                            toggle: false
-                                        }
-                                    ]
-                                }
-                                ]
-                            }]
-                        }]
-                    }
-            });
+                localTitle: text,
+            }
+        );
     };
     logout = () => {
         this.userService.logoutCurrentUser().then(
@@ -102,7 +125,9 @@ class NavBar extends React.Component {
                                        placeholder="Course Title"/>
                             </div>
                             <div className="col-2 col-sm-2">
-                                <button onClick={() => this.props.addCourse(this.state.course)}
+                                <button onClick={
+                                    this.addCourseToRest
+                                }
                                         className="btn-sm btn btn-outline-dark">
                                     <i className="fa fa-plus float-left fa-2x mt-2"></i>
                                 </button>
@@ -111,7 +136,7 @@ class NavBar extends React.Component {
                                         <i className="fa fa-2x fa-user"></i>
                                     </button>
                                 </Link>
-                                <Link to={"/login"}>
+                                <Link to={"/"}>
                                     <button onClick={this.logout} className="btn-sm btn">
                                         <i className="fa fa-2x fa-sign-out"></i>
                                     </button>

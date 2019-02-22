@@ -2,7 +2,7 @@ import React from 'react'
 import WidgetComponent from './WidgetComponent'
 
 const WidgetList = ({widgets, addWidget, deleteWidget, updateWidget, moveUp, moveDown, save,previewOn, previewOff}) =>
-    <div>
+<div>
         {
             widgets.length !== 0 && widgets[0].toggle === false &&
             <div className="row p-3">

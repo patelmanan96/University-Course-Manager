@@ -55,7 +55,7 @@ class Profile extends Component {
 
     logout = () => {
         this.userService.logoutCurrentUser()
-        this.props.history.push("/login");
+        this.props.history.push("/");
 
     }
 

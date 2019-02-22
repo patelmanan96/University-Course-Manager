@@ -1,15 +1,15 @@
-function Course(courseId, courseName, courseAuthor, modules) {
+function Course(courseId, title, author, modules) {
     this.courseId = courseId;
-    this.courseName = courseName;
-    this.courseAuthor = courseAuthor;
+    this.title = title;
+    this.author = author;
     this.modules = modules;
 
     this.setId = setId;
     this.getId = getId;
-    this.setcourseName = setCourseName;
-    this.getCourseName = getCourseName;
-    this.setCourseAuthor= setCourseAuthor;
-    this.getCourseAuthor = getCourseAuthor;
+    this.setTitle = setTitle;
+    this.getTitle = getTitle;
+    this.setAuthor= setAuthor;
+    this.getAuthor = getAuthor;
     this.setModules = setModules;
     this.getModules = getModules;
 
@@ -21,20 +21,20 @@ function Course(courseId, courseName, courseAuthor, modules) {
         return this.courseId;
     }
 
-    function setCourseName(courseName){
-        this.courseName = courseName;
+    function setTitle(title){
+        this.title = title;
     }
 
-    function getCourseName(){
-        return this.courseName;
+    function getTitle(){
+        return this.title;
     }
 
-    function setCourseAuthor(courseAuthor) {
-        this.courseAuthor = courseAuthor;
+    function setAuthor(author) {
+        this.author = author;
     }
 
-    function getCourseAuthor() {
-        return this.courseAuthor;
+    function getAuthor() {
+        return this.author;
     }
 
     function setModules(modules) {

@@ -3,6 +3,10 @@ import courses from './courses.json'
 class CourseService {
     constructor() {
         this.courses = courses;
+        this.urlToAllCourses = 'http://localhost:8080/api/courses';
+        this.urlToSessionCourses = 'http://localhost:8080/api/sessionCourses'
+        this.urlToCreateCourse = 'http://localhost:8080/api/courses'
+        this.urlToDelete = 'http://localhost:8080/api/courses/'
     }
 
     static myInstance = null;
@@ -56,7 +60,6 @@ class CourseService {
         )
 
 
-
     findAllCourses = () =>
         this.courses;
 
@@ -66,7 +69,7 @@ class CourseService {
         )
 
     findWidgets = (topicId) => {
-        console.log("TID  "+ topicId);
+        console.log("TID  " + topicId);
         let ws = [];
         this.courses.find(
             course => {
@@ -90,7 +93,7 @@ class CourseService {
         return ws;
     }
 
-    moveUp = (topicId,widget) => {
+    moveUp = (topicId, widget) => {
         console.log("WID TO MOVE UP : ")
         console.log(widget)
         this.courses.map(course => {
@@ -99,7 +102,7 @@ class CourseService {
                         lesson.topics.map(topic => {
                             if (topic.id === topicId) {
                                 let indexUp = topic.widgets.indexOf(widget);
-                                topic.widgets.move(indexUp,indexUp-1);
+                                topic.widgets.move(indexUp, indexUp - 1);
                             }
                         })
                     })
@@ -110,7 +113,7 @@ class CourseService {
 
     updateCourse = course => {
         this.courses.map(courseCurrent =>
-            courseCurrent.id === course.id ? course: courseCurrent
+            courseCurrent.id === course.id ? course : courseCurrent
         )
     }
 
@@ -130,6 +133,45 @@ class CourseService {
             )
         })
         //return this.courses;
+    }
+
+    findSessionCourses = () => {
+        return fetch(this.urlToSessionCourses,
+            {
+                credentials: 'include',
+                method: 'get',
+            }).then(function (value) {
+            return value.json();
+        });
+    }
+
+    createCourseRest = (course) => {
+        console.log("REST CSERV START")
+        console.log(course);
+        console.log("END")
+        return fetch(this.urlToCreateCourse, {
+            method: 'post',
+            body: JSON.stringify(course),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+    }
+
+    deleteCourseRest = (course) => {
+        console.log(this.urlToDelete + ""+ course.id)
+        return fetch(this.urlToDelete + course.id,{
+            method: 'delete'
+        })
+    }
+
+    findCourseByIdRest = (courseId) => {
+        return fetch('http://localhost:8080/api/courses/' + courseId,
+            {
+                method: 'get'
+            }).then(function (value) {
+            return value.json();
+        });
     }
 
 

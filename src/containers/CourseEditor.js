@@ -9,48 +9,84 @@ import {createStore} from "redux";
 import {Provider} from 'react-redux';
 import WidgetReducer from '../reducers/WidgetReducer';
 import WidgetListContainer from './WidgetListContainer'
+import ModuleService from "../services/ModuleService";
+import LessonService from "../services/LessonService";
 
 /*
 const store = createStore(WidgetReducer)
 */
 
-const courseService= CourseService.getInstance();
+const courseService = CourseService.getInstance();
 const cStore = createStore(WidgetReducer);
 
 class CourseEditor extends React.Component {
     constructor(props) {
         super(props);
-        this.courseService = new CourseService()
-        const courseId = parseInt(props.match.params.id)
-        const course = this.courseService.findCourseById(courseId)
-        if (course.modules[0] === undefined) {
-            this.state = {
-                course: course
-            }
-        } else if (course.modules[0].lessons[0] === undefined) {
-            this.state = {
-                course: course,
-                module: course.modules[0]
-            }
-        } else if (course.modules[0].lessons[0].topics[0] === undefined) {
-            this.state = {
-                course: course,
-                module: course.modules[0],
-                lessons: course.modules[0].lessons,
-                lesson: course.modules[0].lessons[0],
-            }
-        } else {
-            this.state = {
-                course: course,
-                module: course.modules[0],
-                lesson: course.modules[0].lessons[0],
-                lessons: course.modules[0].lessons,
-                topic: course.modules[0].lessons[0].topics[0],
-                topicsS: course.modules[0].lessons[0].topics,
-                widgets:course.modules[0].lessons[0].topics[0].widgets
-            }
+        this.courseService = new CourseService();
+        this.moduleService = new ModuleService();
+        this.lessonService = new LessonService();
+        this.courseId = parseInt(props.match.params.id)
+        let t = this;
+        this.state = {
+            course: '',
+            module: '',
+            modules: [],
+            lesson: '',
+            lessons: [],
+            topic: '',
+            topicsS: [],
+            widgets: []
         }
-        console.log(this.state.widgets)
+
+
+    }
+
+    componentDidMount() {
+        let t = this;
+        this.courseService.findCourseByIdRest(parseInt(this.courseId)).then(
+            function (course) {
+                console.log("OBJECT RECIEVED : ")
+                console.log(course)
+                console.log("MODULES : ")
+                console.log(course.modules)
+
+                t.setState(
+                    {
+                        course: course,
+                        module: course.modules[0],
+                        modules:course.modules,
+                        lesson: course.modules[0].lessons[0],
+                        lessons: course.modules[0].lessons,
+                        topic: course.modules[0].lessons[0].topics[0],
+                        topicsS: course.modules[0].lessons[0].topics,
+                    }
+                )
+            }
+        )
+    }
+
+    refreshContent = () => {
+        let t = this;
+        this.courseService.findCourseByIdRest(parseInt(this.courseId)).then(
+            function (course) {
+                console.log("OBJECT RECIEVED : ")
+                console.log(course)
+                console.log("MODULES : ")
+                console.log(course.modules)
+
+                t.setState(
+                    {
+                        course: course,
+                        module: course.modules[0],
+                        modules:course.modules,
+                        lesson: course.modules[0].lessons[0],
+                        lessons: course.modules[0].lessons,
+                        topic: course.modules[0].lessons[0].topics[0],
+                        topicsS: course.modules[0].lessons[0].topics,
+                    }
+                )
+            }
+        )
     }
 
     selectModule = module => {
@@ -61,7 +97,7 @@ class CourseEditor extends React.Component {
                 lessons: module.lessons,
                 topic: module.lessons[0].topics[0],
                 topicsS: module.lessons[0].topics,
-                widgets:module.lessons[0].topics[0].widgets
+                widgets: []
             })
         } else {
             this.setState({
@@ -109,10 +145,18 @@ class CourseEditor extends React.Component {
     }
 
     editLessons = (lessonTab) => {
+
         console.log(lessonTab.topics);
         let newName = prompt("ENTER NEW NAME FOR : " + lessonTab.title);
         if (newName !== "" && newName !== null) {
-            let xx = this.state.module.lessons.find(mod => mod.title === lessonTab.title);
+            lessonTab.title = newName;
+            let t = this;
+            this.lessonService.editLessonREST(lessonTab).then(
+                function (val) {
+                    t.refreshContent();
+                }
+            )
+            /*let xx = this.state.module.lessons.find(mod => mod.title === lessonTab.title);
             let index = this.state.module.lessons.indexOf(xx);
             this.state.module.lessons[index].title = newName;
             this.setState(
@@ -121,7 +165,7 @@ class CourseEditor extends React.Component {
                         ...this.state.module.lessons
                     ]
                 }
-            )
+            )*/
         }
     }
 
@@ -165,38 +209,47 @@ class CourseEditor extends React.Component {
     }
 
     activeModule = (module) => {
-        if (module.id === this.state.module.id){
+        if (module.id === this.state.module.id) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
     activeTopic = (topicPassed) => {
-        if (topicPassed.id === this.state.topic.id){
+        if (topicPassed.id === this.state.topic.id) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
     selectTopic = (topicSelected) => {
-       let widgets = topicSelected.widgets
+/*
+        let widgets = topicSelected.widgets
+*/
         this.setState(
             {
-                topic:topicSelected,
-                widgets: widgets
+                topic: topicSelected,
+                widgets: []
             }
         )
     }
 
     addLesson = (lessonToAdd) => {
+        console.log( " L TO ADD : ")
         console.log(lessonToAdd)
-        this.setState({
-                lessons: [this.state.module.lessons.push(lessonToAdd)]
+        let t = this;
+        this.lessonService.addLessonToModuleREST(this.state.module.id,lessonToAdd).then(
+            function () {
+                t.refreshContent();
+                t.selectLesson(lessonToAdd);
             }
         )
+
+        /*this.setState({
+                lessons: [this.state.module.lessons.push(lessonToAdd)]
+            }
+        )*/
         /*this.setState(
             {
                 lessons: [
@@ -209,29 +262,16 @@ class CourseEditor extends React.Component {
     }
 
 
-
     render() {
 
-        console.log("BEFOORE SENDING : "+this.state.widgets.length)
-        let x = this.state.widgets
-
-
-        console.log(x)
-        console.log("X len : "+x.length)
-
-        /*{
-            this.setState(
-                {
-                    state: courseService.findWidgets(this.state.topicId)
-                }
-            )
-        }*/
 
         cStore.dispatch(
-            {type: "LOAD", widgets: this.state.widgets,
-            courseService : this.courseService,
-                topicId: this.state.topicId}
-            )
+            {
+                type: "LOAD", widgets: this.state.widgets,
+                courseService: this.courseService,
+                topicId: this.state.topicId
+            }
+        )
 
         // load state using course Service
         // save using course Service
@@ -245,12 +285,15 @@ class CourseEditor extends React.Component {
                     <ModuleList
                         moduleClass={"nav-link btn-outline-primary"}
                         selectModule={this.selectModule}
-                        modules={this.state.course.modules}
+                        modules={this.state.modules}
                         activeModule={this.activeModule}
+                        courseId = {this.courseId}
+                        refreshContent = {this.refreshContent}
                     />
                     <div className="col-9 bg-light text-dark">
                         <LessonTabs
-                            lessons={this.state.module.lessons}
+                            moduleId = {this.state.module.id}
+                            lessons={this.state.lessons}
                             activateLessonTab={this.activateLessonTab}
                             deleteLessons={this.deleteLessons}
                             editLessons={this.editLessons}
@@ -258,7 +301,7 @@ class CourseEditor extends React.Component {
                             addLesson={this.addLesson}
                         />
                         {
-                            <TopicPills topics={this.state.lesson.topics}
+                            <TopicPills topics={this.state.topicsS}
                                         editTopics={this.editTopics}
                                         deleteTopic={this.deleteTopic}
                                         createTopic={this.createTopic}
@@ -267,7 +310,7 @@ class CourseEditor extends React.Component {
                             />
                         }
                         <Provider store={cStore}>
-                            <WidgetListContainer widgets={this.state.widgets} topicId = {this.state.topic.id}
+                            <WidgetListContainer widgets={this.state.widgets} topicId={this.state.topic.id}
                             />
                         </Provider>
                     </div>
