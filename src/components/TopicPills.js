@@ -6,7 +6,7 @@ class TopicPills extends React.Component {
         this.state = {
             topic:
                 {
-                    id: (new Date()).getTime(),
+                    id: parseInt((new Date().getMilliseconds() % 1000) + 2),
                     title: 'New Topic',
                     widgets:[]
                 }
@@ -18,7 +18,7 @@ class TopicPills extends React.Component {
         if (tName !== undefined && tName !== "") {
             this.state = {
                 topic: {
-                    id: (new Date()).getTime(),
+                    id: parseInt((new Date().getMilliseconds() % 1000) + 2),
                     title: tName,
                     widgets:[]
                 }
@@ -27,7 +27,7 @@ class TopicPills extends React.Component {
         else {
                 this.state = {
                     topic: {
-                        id: (new Date()).getTime(),
+                        id: parseInt((new Date().getMilliseconds() % 1000) + 2),
                         title: 'New Topic',
                         widgets:[]
                     }

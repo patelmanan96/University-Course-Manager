@@ -11,6 +11,7 @@ import WidgetReducer from '../reducers/WidgetReducer';
 import WidgetListContainer from './WidgetListContainer'
 import ModuleService from "../services/ModuleService";
 import LessonService from "../services/LessonService";
+import TopicService from "../services/TopicService";
 
 /*
 const store = createStore(WidgetReducer)
@@ -25,6 +26,7 @@ class CourseEditor extends React.Component {
         this.courseService = new CourseService();
         this.moduleService = new ModuleService();
         this.lessonService = new LessonService();
+        this.topicService = new TopicService();
         this.courseId = parseInt(props.match.params.id)
         let t = this;
         this.state = {
@@ -57,10 +59,17 @@ class CourseEditor extends React.Component {
                         modules:course.modules,
                         lesson: course.modules[0].lessons[0],
                         lessons: course.modules[0].lessons,
-                        topic: course.modules[0].lessons[0].topics[0],
-                        topicsS: course.modules[0].lessons[0].topics,
                     }
                 )
+                if(t.state.lesson !== undefined && t.state.lesson.topics !== undefined)
+                {
+                    t.setState(
+                        {
+                            topic: course.modules[0].lessons[0].topics[0],
+                            topicsS: course.modules[0].lessons[0].topics,
+                        }
+                    )
+                }
             }
         )
     }
@@ -81,10 +90,19 @@ class CourseEditor extends React.Component {
                         modules:course.modules,
                         lesson: course.modules[0].lessons[0],
                         lessons: course.modules[0].lessons,
-                        topic: course.modules[0].lessons[0].topics[0],
-                        topicsS: course.modules[0].lessons[0].topics,
+                        topic : [],
+                        topicsS:[]
                     }
                 )
+                if(t.state.lesson !== undefined && t.state.lesson.topics !== undefined)
+                {
+                    t.setState(
+                        {
+                            topic: course.modules[0].lessons[0].topics[0],
+                            topicsS: course.modules[0].lessons[0].topics,
+                        }
+                    )
+                }
             }
         )
     }
@@ -101,15 +119,22 @@ class CourseEditor extends React.Component {
             })
         } else {
             this.setState({
-                module: module
+                module: module,
+                lessons:[],
+                topicsS:[]
             })
         }
     }
     selectLesson = lesssonCurrent => {
         this.setState(
             {
-                lesson: lesssonCurrent,
-                topicsS: this.state.lesson.topics
+                lesson: lesssonCurrent
+            }
+        )
+        this.setState(
+            {
+                topicsS: lesssonCurrent.topics,
+                topic:lesssonCurrent.topics[0]
             }
         )
     }
@@ -125,12 +150,22 @@ class CourseEditor extends React.Component {
             }
         )*/
         // DELETING BUT NOT RENDERING
+        let module  = this.state.module;
+        let t = this;
+        this.lessonService.deleteLessonREST(lessonRec).then(
+            function (val) {
+                t.refreshContent();
+                t.selectModule(module)
+            }
+        )
+        /*
+
         this.state.module.lessons = this.state.module.lessons.filter(
             mod => mod.title !== lessonRec.title
         )
 
         this.selectModule(this.state.module);
-
+*/
         /*
                 this.state.module.lessons = this.state.module.lessons.filter(
                     mod => mod.id !== lessonRec.id
@@ -172,6 +207,15 @@ class CourseEditor extends React.Component {
     editTopics = (topicTab) => {
         let newName = prompt("ENTER NEW NAME FOR : " + topicTab.title);
         if (newName !== "" && newName !== null) {
+            topicTab.title = newName;
+            let t= this;
+            this.topicService.updateTopic(topicTab).then(
+                function () {
+                    t.refreshContent();
+                }
+            )
+
+            /*
             let xx = this.state.lesson.topics.find(mod => mod.title === topicTab.title);
             let index = this.state.lesson.topics.indexOf(xx);
             this.state.lesson.topics[index].title = newName;
@@ -181,14 +225,21 @@ class CourseEditor extends React.Component {
                         ...this.state.lesson.topics
                     ]
                 }
-            )
+            )*/
         }
     }
 
     deleteTopic = (topicTab) => {
+        let t = this;
+        this.topicService.deleteTopicREST(topicTab).then(
+            function (val) {
+                t.refreshContent();
+            }
+        )
+/*
         this.state.lesson.topics = this.state.lesson.topics.filter(
             mod => mod.title !== topicTab.title
-        )
+        )*/
         this.selectLesson(this.state.lesson);
     }
 
@@ -201,6 +252,14 @@ class CourseEditor extends React.Component {
 
 
     createTopic = (topicPassed) => {
+        let t = this;
+        this.topicService.addTopicREST(this.state.lesson.id,topicPassed).then(
+            function (val) {
+                t.refreshContent();
+                t.selectTopic(topicPassed);
+            }
+        )
+
         console.log(topicPassed)
         this.setState({
                 topicsS: [this.state.lesson.topics.push(topicPassed)]
@@ -242,7 +301,7 @@ class CourseEditor extends React.Component {
         this.lessonService.addLessonToModuleREST(this.state.module.id,lessonToAdd).then(
             function () {
                 t.refreshContent();
-                t.selectLesson(lessonToAdd);
+                t.selectModule(t.state.module)
             }
         )
 
@@ -310,15 +369,13 @@ class CourseEditor extends React.Component {
                             />
                         }
                         <Provider store={cStore}>
-                            <WidgetListContainer widgets={this.state.widgets} topicId={this.state.topic.id}
+                            <WidgetListContainer widgets={this.state.widgets}
                             />
                         </Provider>
                     </div>
 
                 </div>
             </div>
-
-
         )
     }
 }

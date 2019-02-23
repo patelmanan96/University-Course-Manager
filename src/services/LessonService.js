@@ -14,9 +14,8 @@ class LessonService {
     }
 
     editLessonREST = (lesson) => {
-        alert(lesson.title)
         return fetch('http://localhost:8080/api/lesson/' + lesson.id, {
-            method: 'post',
+            method: 'put',
             body: JSON.stringify(lesson),
             headers: {
                 'content-type': 'application/json'
