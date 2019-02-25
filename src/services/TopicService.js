@@ -2,7 +2,7 @@ class TopicService {
     constructor() {}
 
     addTopicREST = (lid,topic) => {
-        return fetch('http://localhost:8080/api/lesson/' + lid + '/topic', {
+        return fetch('https://server-java-mananpatel.herokuapp.com/api/lesson/' + lid + '/topic', {
             method: 'post',
             body: JSON.stringify(topic),
             headers: {
@@ -11,7 +11,7 @@ class TopicService {
         })
     }
     updateTopic = (topic) => {
-        return fetch('http://localhost:8080/api/topic/' + topic.id, {
+        return fetch('https://server-java-mananpatel.herokuapp.com/api/topic/' + topic.id, {
             method: 'put',
             body: JSON.stringify(topic),
             headers: {
@@ -21,7 +21,7 @@ class TopicService {
     }
 
     deleteTopicREST = (topic) => {
-        return fetch('http://localhost:8080/api/topic/' + topic.id, {
+        return fetch('https://server-java-mananpatel.herokuapp.com/api/topic/' + topic.id, {
             method: 'delete',
             headers: {
                 'content-type': 'application/json'

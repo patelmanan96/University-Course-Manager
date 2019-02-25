@@ -3,10 +3,10 @@ import courses from './courses.json'
 class CourseService {
     constructor() {
         this.courses = courses;
-        this.urlToAllCourses = 'http://localhost:8080/api/courses';
-        this.urlToSessionCourses = 'http://localhost:8080/api/sessionCourses'
-        this.urlToCreateCourse = 'http://localhost:8080/api/courses'
-        this.urlToDelete = 'http://localhost:8080/api/courses/'
+        this.urlToAllCourses = 'https://server-java-mananpatel.herokuapp.com/api/courses';
+        this.urlToSessionCourses = 'https://server-java-mananpatel.herokuapp.com/api/sessionCourses'
+        this.urlToCreateCourse = 'https://server-java-mananpatel.herokuapp.com/api/courses'
+        this.urlToDelete = 'https://server-java-mananpatel.herokuapp.com/api/courses/'
     }
 
     static myInstance = null;
@@ -166,7 +166,7 @@ class CourseService {
     }
 
     findCourseByIdRest = (courseId) => {
-        return fetch('http://localhost:8080/api/courses/' + courseId,
+        return fetch('https://server-java-mananpatel.herokuapp.com/api/courses/' + courseId,
             {
                 method: 'get'
             }).then(function (value) {

@@ -289,7 +289,7 @@ class CourseEditor extends React.Component {
         this.setState(
             {
                 topic: topicSelected,
-                widgets: []
+                widgets: this.state.widgets
             }
         )
     }
@@ -376,6 +376,8 @@ class CourseEditor extends React.Component {
 
                 </div>
             </div>
+
+
         )
     }
 }

@@ -8,6 +8,7 @@ class SignUp extends Component {
         super();
         this.userService = new UserService();
         this.state = {
+            emptyField:false,
             failedPassword: false,
             usernameRepeated: false,
             username: '',
@@ -40,38 +41,50 @@ class SignUp extends Component {
     }
 
     checkAndSignUp = () => {
-        if (this.state.password !== this.state.verifyPassword) {
+        if(this.state.username === "" || this.state.password === ""){
             this.setState(
                 {
-                    failedPassword: true,
+                    emptyField:true,
+                    failedPassword:false,
                     usernameRepeated:false
                 }
             )
-        } else {
-            let obj = new User(this.state.username, this.state.password, null, null, 'faculty', null, null);
-            let queried = this.userService.registerUser(obj);
-            console.log(queried)
-            let redirect = this.props.history;
-            let uService = this.userService;
-            let stateLocal = this
-            queried.then(function (res) {
-                console.log(res)
-                if (res.username !== null) {
-                    uService.currentUser().then(
-                        function (v) {
-                            alert(v)
-                        }
-                    )
-                    redirect.push("/table");
-                } else {
-                    stateLocal.setState(
-                        {
-                            failedPassword: false,
-                            usernameRepeated: true
-                        }
-                    )
-                }
-            })
+        }
+        else {
+            if (this.state.password !== this.state.verifyPassword) {
+                this.setState(
+                    {
+                        failedPassword: true,
+                        usernameRepeated: false,
+                        emptyField:false
+                    }
+                )
+            } else {
+                let obj = new User(this.state.username, this.state.password, null, null, 'faculty', null, null);
+                let queried = this.userService.registerUser(obj);
+                console.log(queried)
+                let redirect = this.props.history;
+                let uService = this.userService;
+                let stateLocal = this
+                queried.then(function (res) {
+                    console.log(res)
+                    if (res.username !== null) {
+                        uService.currentUser().then(
+                            function (v) {
+                            }
+                        )
+                        redirect.push("/table");
+                    } else {
+                        stateLocal.setState(
+                            {
+                                failedPassword: false,
+                                usernameRepeated: true,
+                                emptyField:false
+                            }
+                        )
+                    }
+                })
+            }
         }
     }
 
@@ -86,6 +99,11 @@ class SignUp extends Component {
                 {
                     this.state.failedPassword === true && <div className="alert alert-danger" role="alert">
                         Passwords Don't Match
+                    </div>
+                }
+                {
+                    this.state.emptyField === true && <div className="alert alert-danger" role="alert">
+                        Enter Both Username And Password. Cannot Sign Up Empty.
                     </div>
                 }
                 {
@@ -126,10 +144,10 @@ class SignUp extends Component {
                         </button>
                         <div className="row">
                             <div className="col-6">
-                                <Link to="/login">Login</Link>
+                                <Link to="/">Login</Link>
                             </div>
                             <div className="col-6">
-                                <Link to="/login" className="float-right">Cancel</Link>
+                                <Link to="/" className="float-right">Cancel</Link>
                             </div>
                         </div>
                     </div>
