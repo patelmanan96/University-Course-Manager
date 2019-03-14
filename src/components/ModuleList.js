@@ -8,24 +8,13 @@ class ModuleList extends React.Component {
         this.moduleService = new ModuleService();
 
         this.state = {
-            module: {id: parseInt((new Date().getMilliseconds() % 1000)) ,
+            module: {
                 title: 'New Module',
                 lessons:[
                     {
-                        id:parseInt((new Date().getMilliseconds() % 1000) + 1),
                         title:'Lesson 1',
                         topics:[{
-                            id:parseInt((new Date().getMilliseconds() % 1000) + 2),
-                            title:'Topic 1',
-                            widgets:[
-                                {
-                                    id: parseInt((new Date().getMilliseconds() % 1000) + 3),
-                                    type: "HEADING",
-                                    size: 1,
-                                    headingText: "The Document Object Model",
-                                    toggle: false
-                                }
-                            ]
+                            title:'Topic 1'
                         }]
                     }
                 ]
@@ -63,14 +52,11 @@ class ModuleList extends React.Component {
         this.setState(
             {
                 module: {
-                    id: parseInt((new Date().getMilliseconds() % 1000) + 1),
                     title: event.target.value,
                     lessons: [
                         {
-                            id: parseInt((new Date().getMilliseconds() % 1000) + 2),
                             title: 'Lesson 1',
                             topics:[{
-                                id:parseInt((new Date().getMilliseconds() % 1000) + 3),
                                 title:'Topic 1',
                                 widgets:[]
                             }]

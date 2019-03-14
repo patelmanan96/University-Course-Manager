@@ -1,12 +1,17 @@
 import courses from './courses.json'
+import ModuleService from "./ModuleService";
+import LessonService from "./LessonService";
 
 class CourseService {
     constructor() {
         this.courses = courses;
-        this.urlToAllCourses = 'https://server-java-mananpatel.herokuapp.com/api/courses';
-        this.urlToSessionCourses = 'https://server-java-mananpatel.herokuapp.com/api/sessionCourses'
-        this.urlToCreateCourse = 'https://server-java-mananpatel.herokuapp.com/api/courses'
-        this.urlToDelete = 'https://server-java-mananpatel.herokuapp.com/api/courses/'
+        this.urlToAllCourses = 'http://localhost:8080//api/courses';
+        this.urlToSessionCourses = 'http://localhost:8080//api/courses/sessionCourses'
+        this.urlToCreateCourse = 'http://localhost:8080//api/courses'
+        this.urlToDelete = 'http://localhost:8080//api/courses/'
+
+        this.moduleService = new ModuleService();
+        this.lessonService = new LessonService();
     }
 
     static myInstance = null;
@@ -166,7 +171,7 @@ class CourseService {
     }
 
     findCourseByIdRest = (courseId) => {
-        return fetch('https://server-java-mananpatel.herokuapp.com/api/courses/' + courseId,
+        return fetch('http://localhost:8080//api/courses/' + courseId,
             {
                 method: 'get'
             }).then(function (value) {

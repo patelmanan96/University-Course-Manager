@@ -55,20 +55,32 @@ class CourseEditor extends React.Component {
                 t.setState(
                     {
                         course: course,
-                        module: course.modules[0],
-                        modules:course.modules,
-                        lesson: course.modules[0].lessons[0],
-                        lessons: course.modules[0].lessons,
                     }
                 )
-                if(t.state.lesson !== undefined && t.state.lesson.topics !== undefined)
-                {
+                if(course.modules[0] !== undefined){
                     t.setState(
                         {
-                            topic: course.modules[0].lessons[0].topics[0],
-                            topicsS: course.modules[0].lessons[0].topics,
+                            modules:course.modules,
+                            module: course.modules[0]
                         }
                     )
+                    if(course.modules[0].lessons[0] !== undefined){
+                        t.setState(
+                            {
+                                lessons: course.modules[0].lessons,
+                                lesson: course.modules[0].lessons[0]
+                            }
+                        )
+                        if(course.modules[0].lessons[0].topics[0] !== undefined)
+                        {
+                            t.setState(
+                                {
+                                    topicsS: course.modules[0].lessons[0].topics,
+                                    topic: course.modules[0].lessons[0].topics[0]
+                                }
+                            )
+                        }
+                    }
                 }
             }
         )
@@ -78,30 +90,35 @@ class CourseEditor extends React.Component {
         let t = this;
         this.courseService.findCourseByIdRest(parseInt(this.courseId)).then(
             function (course) {
-                console.log("OBJECT RECIEVED : ")
-                console.log(course)
-                console.log("MODULES : ")
-                console.log(course.modules)
-
                 t.setState(
                     {
                         course: course,
-                        module: course.modules[0],
-                        modules:course.modules,
-                        lesson: course.modules[0].lessons[0],
-                        lessons: course.modules[0].lessons,
-                        topic : [],
-                        topicsS:[]
                     }
                 )
-                if(t.state.lesson !== undefined && t.state.lesson.topics !== undefined)
-                {
+                if(course.modules[0] !== undefined){
                     t.setState(
                         {
-                            topic: course.modules[0].lessons[0].topics[0],
-                            topicsS: course.modules[0].lessons[0].topics,
+                            modules:course.modules,
+                            module: course.modules[0]
                         }
                     )
+                    if(course.modules[0].lessons[0] !== undefined){
+                        t.setState(
+                            {
+                                lessons: course.modules[0].lessons,
+                                lesson: course.modules[0].lessons[0]
+                            }
+                        )
+                        if(course.modules[0].lessons[0].topics[0] !== undefined)
+                        {
+                            t.setState(
+                                {
+                                    topicsS: course.modules[0].lessons[0].topics,
+                                    topic: course.modules[0].lessons[0].topics[0]
+                                }
+                            )
+                        }
+                    }
                 }
             }
         )
@@ -275,7 +292,8 @@ class CourseEditor extends React.Component {
         }
     }
     activeTopic = (topicPassed) => {
-        if (topicPassed.id === this.state.topic.id) {
+
+        if (this.state.topic !== undefined && topicPassed.id === this.state.topic.id) {
             return true;
         } else {
             return false;

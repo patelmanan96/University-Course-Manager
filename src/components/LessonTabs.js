@@ -5,15 +5,12 @@ class LessonTabs extends React.Component {
         super(props);
         this.state = {
             lesson: {
-                id: parseInt((new Date().getMilliseconds() % 1000) + 1),
                 title: 'New Lesson',
                 topics: [
                     {
-                        id: parseInt((new Date().getMilliseconds() % 1000) + 2),
                         title: 'Topic 1',
                         widgets:[
                             {
-                                id: parseInt((new Date().getMilliseconds() % 1000) + 3),
                                 type: "HEADING",
                                 size: 1,
                                 headingText: "The Document Object Model",
@@ -32,15 +29,12 @@ class LessonTabs extends React.Component {
             this.state =
                 {
                     lesson: {
-                        id: parseInt((new Date().getMilliseconds() % 1000) + 1),
                         title: 'New Lesson 1',
                         topics: [
                             {
-                                id: parseInt((new Date().getMilliseconds() % 1000) + 2),
                                 title: 'Topic 1',
                                 widgets:[
                                     {
-                                        id: parseInt((new Date().getMilliseconds() % 1000) + 3),
                                         type: "HEADING",
                                         size: 1,
                                         headingText: "The Document Object Model",
@@ -55,15 +49,12 @@ class LessonTabs extends React.Component {
             this.state =
                 {
                     lesson: {
-                        id: parseInt((new Date().getMilliseconds() % 1000) + 1),
                         title: inp,
                         topics: [
                             {
-                                id: parseInt((new Date().getMilliseconds() % 1000) + 2),
                                 title: 'Topic 1',
                                 widgets:[
                                     {
-                                        id: parseInt((new Date().getMilliseconds() % 1000) + 3),
                                         type: "HEADING",
                                         size: 1,
                                         headingText: "The Document Object Model",

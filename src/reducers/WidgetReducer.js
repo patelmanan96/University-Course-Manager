@@ -1,5 +1,9 @@
 import CourseService from "../services/CourseService";
 
+Array.prototype.move
+    = function (from, to) {
+    this.splice(to, 0, this.splice(from, 1)[0]);
+};
 const widgets =
     {
         widgets: [
@@ -105,7 +109,7 @@ const widgetReducer = (state, action) => {
 
         case 'PREVIEW_OFF': {
 
-           state.widgets.map(widget =>widget.toggle = false)
+            state.widgets.map(widget =>widget.toggle = false)
             state.widgets = state.widgets.map(widget => {
                 return Object.assign({}, widget)
             })

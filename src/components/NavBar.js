@@ -14,21 +14,16 @@ class NavBar extends React.Component {
         this.state = {
             course:
                 {
-                    id: 0,
                     title: 'New Course',
                     author: '',
                     modules: [{
-                        id: parseInt((new Date().getMilliseconds() % 1000)),
                         title: "Module 1",
                         lessons: [{
-                            id: parseInt((new Date().getMilliseconds() % 1000)),
                             title: "Lesson 1",
                             topics: [{
-                                id: parseInt((new Date().getMilliseconds() % 1000)),
                                 title: "Topic 1",
                                 widgets: [
                                     {
-                                        id: parseInt((new Date().getMilliseconds() % 1000)),
                                         type: "HEADING",
                                         size: 1,
                                         headingText: "The Document Object Model",
@@ -57,13 +52,10 @@ class NavBar extends React.Component {
                                 title: t.state.localTitle === undefined ? 'New Course':t.state.localTitle,
                                 author: user.username,
                                 modules: [{
-                                    id: parseInt((new Date().getMilliseconds() % 1000) + 1),
                                     title: "Module 1",
                                     lessons: [{
-                                        id: parseInt((new Date().getMilliseconds() % 1000) + 2),
                                         title: "Lesson 1",
                                         topics: [{
-                                            id: parseInt((new Date().getMilliseconds() % 1000) + 3),
                                             title: "Topic 1",
                                             widgets: [
                                                 {
