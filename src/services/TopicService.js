@@ -28,5 +28,14 @@ class TopicService {
             }
         })
     }
+
+    getTopics = (lid) => {
+        return fetch('http://localhost:8080//api/lesson/' + lid, {
+            method: 'get',}).then(
+            function (val) {
+                return val.json();
+            }
+        )
+    }
 }
 export default TopicService;

@@ -46,7 +46,7 @@ const widgetReducer = (state, action) => {
                         type: 'HEADING',
                         size: 1,
                         text: 'New Widget',
-                        toggle : false
+                        toggle: false
                     }
                 ],
                 courseService: state.courseService,
@@ -78,7 +78,7 @@ const widgetReducer = (state, action) => {
                 return Object.assign({}, widget)
             })
             return {
-                widgets:state.widgets
+                widgets: state.widgets
             }
         }
 
@@ -102,14 +102,27 @@ const widgetReducer = (state, action) => {
 
         case 'LOAD':
             console.log("here")
+            console.log(" LOAD >  > > > > > > >> ")
+            console.log(action)
+            console.log("END LOAD > > > > > > > >")
             let newState = Object.assign({}, state);
+            /*if (action.topicId !== undefined) {
+                action.widgetService.loadWidgetsForTopic(action.topicId).then(
+                    function (val) {
+                        newState.widgets = val;
+                    }
+                )
+            } else {*/
             newState.widgets = action.widgets
-            console.log(newState)
+
+            console.log("NEW WIDS : ")
+            console.log(newState.widgets)
+
             return newState
 
         case 'PREVIEW_OFF': {
 
-            state.widgets.map(widget =>widget.toggle = false)
+            state.widgets.map(widget => widget.toggle = false)
             state.widgets = state.widgets.map(widget => {
                 return Object.assign({}, widget)
             })
@@ -119,7 +132,7 @@ const widgetReducer = (state, action) => {
         }
 
         case 'PREVIEW_ON':
-            state.widgets.map(widget =>widget.toggle = true)
+            state.widgets.map(widget => widget.toggle = true)
             state.widgets = state.widgets.map(widget => {
                 return Object.assign({}, widget)
             })
@@ -127,6 +140,10 @@ const widgetReducer = (state, action) => {
                 widgets: state.widgets
             }
 
+        case 'SAVE_WIDGET':
+            return {
+                widgets: action.widgets
+            }
 
         default:
             return state;

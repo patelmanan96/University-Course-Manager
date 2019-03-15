@@ -34,16 +34,19 @@ class LoginComponent extends Component {
         let obj = new User(this.state.username, this.state.password, null, null, null)
         let queried = this.userService.loginUser(obj);
         let redirect = this.props.history;
+        let t = this;
         let ret = queried.then(function (res) {
             if(res.username !== null){
                 redirect.push("/table");
             }
-        })
-        this.setState(
-            {
-                failed:true
+            else{
+                t.setState(
+                    {
+                        failed:true
+                    }
+                )
             }
-        )
+        })
     }
 
     signUp = () => {

@@ -2,8 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import WidgetList from '../components/WidgetList'
 import CourseService from "../services/CourseService";
+import WidgetService from "../services/WidgetService";
 
-const courseService = new CourseService();
+const widgetService = new WidgetService();
 
 const stateToPropertyMapper = state => ({
     widgets: state.widgets
@@ -59,8 +60,7 @@ const dispatchToPropertyMapper = (dispatch, props) => ({
         })
     },
     save: widgets => {
-        console.log("T ID : "+props.topicId)
-        courseService.createWidget(props.topicId,widgets);
+        widgetService.saveWidgets(props.topicId,widgets)
     },
 
 })
