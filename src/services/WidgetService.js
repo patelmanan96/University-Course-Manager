@@ -41,7 +41,7 @@ class WidgetService{
 
     addImageWidget = (widToAdd, tid) => {
         widToAdd.id = null;
-        fetch('http://localhost:8080//api/topic/'+ tid +'/imageWidget', {
+        fetch('https://jpa-server-mananpatel.herokuapp.com/api/topic/'+ tid +'/imageWidget', {
             method: 'post',
             body: JSON.stringify(widToAdd),
             headers: {
@@ -52,7 +52,7 @@ class WidgetService{
 
     addListWidget = (widToAdd, tid) => {
         widToAdd.id = null;
-        fetch('http://localhost:8080//api/topic/'+ tid +'/listWidget', {
+        fetch('https://jpa-server-mananpatel.herokuapp.com/api/topic/'+ tid +'/listWidget', {
             method: 'post',
             body: JSON.stringify(widToAdd),
             headers: {
@@ -89,14 +89,14 @@ class WidgetService{
     }
 
     deleteWidgetsForTopic = (topicId) => {
-        return fetch('http://localhost:8080//api/topic/' + topicId + '/widget',
+        return fetch('https://jpa-server-mananpatel.herokuapp.com/api/topic/' + topicId + '/widget',
             {
                 method: 'delete'
             });
     }
 
     loadWidgetsForTopic = (topicId) => {
-        return fetch('http://localhost:8080//api/topic/' + topicId + '/widget',
+        return fetch('https://jpa-server-mananpatel.herokuapp.com/api/topic/' + topicId + '/widget',
             {
                 method: 'get'
             }).then(function (value) {

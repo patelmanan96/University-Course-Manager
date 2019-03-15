@@ -1,9 +1,9 @@
 class UserService {
     constructor() {
-        this.loginLink = 'http://localhost:8080//api/login';
-        this.registerLink = 'http://localhost:8080//api/register';
-        this.currentUserLoggedIn = 'http://localhost:8080//api/profile';
-        this.logoutLink = 'http://localhost:8080//api/logout';
+        this.loginLink = 'https://jpa-server-mananpatel.herokuapp.com/api/login';
+        this.registerLink = 'https://jpa-server-mananpatel.herokuapp.com/api/register';
+        this.currentUserLoggedIn = 'https://jpa-server-mananpatel.herokuapp.com/api/profile';
+        this.logoutLink = 'https://jpa-server-mananpatel.herokuapp.com/api/logout';
     }
 
     loginUser = (user) => {
