@@ -29,7 +29,7 @@ class LessonTabs extends React.Component {
             this.state =
                 {
                     lesson: {
-                        title: 'New Lesson 1',
+                        title: 'New Lesson',
                         topics: [
                             {
                                 title: 'Topic 1',

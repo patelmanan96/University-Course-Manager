@@ -74,7 +74,6 @@ class CourseService {
         )
 
     findWidgets = (topicId) => {
-        console.log("TID  " + topicId);
         let ws = [];
         this.courses.find(
             course => {
@@ -99,8 +98,7 @@ class CourseService {
     }
 
     moveUp = (topicId, widget) => {
-        console.log("WID TO MOVE UP : ")
-        console.log(widget)
+
         this.courses.map(course => {
             course.modules.map(module => {
                     module.lessons.map(lesson => {
@@ -129,8 +127,7 @@ class CourseService {
                         lesson.topics.map(topic => {
                             if (topic.id === topicId) {
                                 topic.widgets = widgets;
-                                console.log("INSIDE C SERVICE")
-                                console.log(topic.widgets)
+
                             }
                         })
                     })
@@ -151,9 +148,6 @@ class CourseService {
     }
 
     createCourseRest = (course) => {
-        console.log("REST CSERV START")
-        console.log(course);
-        console.log("END")
         return fetch(this.urlToCreateCourse, {
             method: 'post',
             body: JSON.stringify(course),
@@ -164,7 +158,6 @@ class CourseService {
     }
 
     deleteCourseRest = (course) => {
-        console.log(this.urlToDelete + ""+ course.id)
         return fetch(this.urlToDelete + course.id,{
             method: 'delete'
         })
