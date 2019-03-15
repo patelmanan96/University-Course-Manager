@@ -22,8 +22,7 @@ const widgets =
         ]
     }
 const widgetReducer = (state, action) => {
-    console.log(state)
-    switch (action.type) {
+        switch (action.type) {
         case 'DELETE_WIDGET':
             return {
                 widgets: state.widgets.filter(widget => widget.id !== action.widget.id),
@@ -35,9 +34,7 @@ const widgetReducer = (state, action) => {
             action.widgets = action.widgets.map(widget => {
                 return Object.assign({}, widget)
             })
-            console.log("add")
-            console.log(state)
-            console.log(action)
+
             return {
                 widgets: [
                     ...action.widgets,
@@ -65,10 +62,7 @@ const widgetReducer = (state, action) => {
             }
 
         case 'MOVE_UP': {
-            console.log("INSIDE RED MOVE UP")
-            console.log(action.currentWidget);
-            console.log(state.widgets)
-            console.log(state.widgets.indexOf(action.currentWidget))
+
 
             let cId = state.widgets.indexOf(action.currentWidget)
 
@@ -83,13 +77,11 @@ const widgetReducer = (state, action) => {
         }
 
         case 'MOVE_DOWN': {
-            console.log("MD REDUCER")
-            console.log(action.widget)
+
             let cId = state.widgets.indexOf(action.widget)
 
             state.widgets.move(cId, cId + 1)
 
-            console.log(state.widgets)
 
             state.widgets = state.widgets.map(widget => {
                 return Object.assign({}, widget)
@@ -101,10 +93,8 @@ const widgetReducer = (state, action) => {
         }
 
         case 'LOAD':
-            console.log("here")
-            console.log(" LOAD >  > > > > > > >> ")
-            console.log(action)
-            console.log("END LOAD > > > > > > > >")
+
+
             let newState = Object.assign({}, state);
             /*if (action.topicId !== undefined) {
                 action.widgetService.loadWidgetsForTopic(action.topicId).then(
@@ -117,8 +107,6 @@ const widgetReducer = (state, action) => {
 
             newState.widgets = newState.widgets.sort((a,b) => a.order > b.order)
 
-            console.log("NEW WIDS : ")
-            console.log(newState.widgets)
 
             return newState
 

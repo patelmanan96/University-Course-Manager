@@ -56,10 +56,7 @@ class CourseEditor extends React.Component {
         let t = this;
         this.courseService.findCourseByIdRest(parseInt(this.courseId)).then(
             function (course) {
-                console.log("OBJECT RECIEVED : ")
-                console.log(course)
-                console.log("MODULES : ")
-                console.log(course.modules)
+
 
                 t.setState(
                     {
@@ -248,12 +245,10 @@ class CourseEditor extends React.Component {
                     )
                     }
                 )*/
-        console.log(this.state.module);
     }
 
     editLessons = (lessonTab) => {
 
-        console.log(lessonTab.topics);
         let newName = prompt("ENTER NEW NAME FOR : " + lessonTab.title);
         if (newName !== "" && newName !== null) {
             lessonTab.title = newName;
@@ -331,7 +326,6 @@ class CourseEditor extends React.Component {
             }
         )
 
-        console.log(topicPassed)
         this.setState({
                 topicsS: [this.state.lesson.topics.push(topicPassed)]
             }
@@ -372,9 +366,7 @@ class CourseEditor extends React.Component {
         )
         this.widgetService.loadWidgetsForTopic(topicSelected.id).then(
             function (val){
-                console.log("NEXT LOAD :: :: :: : :")
-                console.log(val)
-                console.log("END LOAD")
+
                 t.setState(
                     {
                         topic: topicSelected,
@@ -393,8 +385,7 @@ class CourseEditor extends React.Component {
     }
 
     addLesson = (lessonToAdd) => {
-        console.log(" L TO ADD : ")
-        console.log(lessonToAdd)
+
         let t = this;
         this.lessonService.addLessonToModuleREST(this.state.module.id, lessonToAdd).then(
             function () {
@@ -415,7 +406,6 @@ class CourseEditor extends React.Component {
                 ]
             }
         )*/
-        console.log(this.state.lessons)
     }
 
     render() {
