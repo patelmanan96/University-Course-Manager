@@ -62,9 +62,11 @@ class WidgetService{
     }
 
     saveWidgets = (topicId, listOfWidgets) => {
+        let order = 1
         return this.deleteWidgetsForTopic(topicId).then(
             listOfWidgets.map(wid =>
                 {
+                    wid.order = order;
                     if(wid.type === "HEADING"){
                         this.addHeadingWidget(wid, topicId);
                     }
@@ -80,6 +82,7 @@ class WidgetService{
                     else if(wid.type === "IMAGE"){
                         this.addImageWidget(wid, topicId);
                     }
+                    order++;
                 }
             )
         );

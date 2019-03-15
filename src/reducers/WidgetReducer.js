@@ -115,6 +115,8 @@ const widgetReducer = (state, action) => {
             } else {*/
             newState.widgets = action.widgets
 
+            newState.widgets = newState.widgets.sort((a,b) => a.order > b.order)
+
             console.log("NEW WIDS : ")
             console.log(newState.widgets)
 
