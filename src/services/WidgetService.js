@@ -8,7 +8,7 @@ class WidgetService{
 
     addHeadingWidget = (widToAdd, tid) => {
         widToAdd.id = null;
-        fetch('http://localhost:8080//api/topic/'+ tid +'/headingWidget', {
+        fetch('https://jpa-server-mananpatel.herokuapp.com/api/topic/'+ tid +'/headingWidget', {
             method: 'post',
             body: JSON.stringify(widToAdd),
             headers: {
@@ -19,7 +19,7 @@ class WidgetService{
 
     addLinkWidget = (widToAdd, tid) => {
         widToAdd.id = null;
-        fetch('http://localhost:8080//api/topic/'+ tid +'/linkWidget', {
+        fetch('https://jpa-server-mananpatel.herokuapp.com/api/topic/'+ tid +'/linkWidget', {
             method: 'post',
             body: JSON.stringify(widToAdd),
             headers: {
@@ -30,7 +30,7 @@ class WidgetService{
 
     addParagraphWidget = (widToAdd, tid) => {
         widToAdd.id = null;
-        fetch('http://localhost:8080//api/topic/'+ tid +'/paragraphWidget', {
+        fetch('https://jpa-server-mananpatel.herokuapp.com/api/topic/'+ tid +'/paragraphWidget', {
             method: 'post',
             body: JSON.stringify(widToAdd),
             headers: {
