@@ -36,9 +36,6 @@ class CourseTable extends Component {
         let t = this;
         this.courseService.findSessionCourses().then(
             function (courses) {
-                console.log("C TO ADD")
-                console.log(courses)
-                console.log("NEW")
                 t.setState(
                     {
                         courses:courses
@@ -73,6 +70,19 @@ class CourseTable extends Component {
         )
     }
 
+    editCourse = (courseToEdit) => {
+        let newName = prompt("ENTER NEW NAME FOR : " + courseToEdit.title);
+        if (newName !== "" && newName !== null) {
+            courseToEdit.title = newName;
+            let t = this;
+            this.courseService.editCourseRest(courseToEdit).then(
+                function (val) {
+                    t.refreshContent();
+                }
+            )
+        }
+    }
+
     render() {
         return (
             <div>
@@ -87,7 +97,9 @@ class CourseTable extends Component {
                                     <CourseRow
                                         deleteCourse={this.deleteCourse}
                                         course={course}
-                                        key={course.id}/>
+                                        key={course.id}
+                                        editCourse={this.editCourse}
+                                    />
                                 )
                             }
                             </tbody>

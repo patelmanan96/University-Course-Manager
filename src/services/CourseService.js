@@ -179,6 +179,16 @@ class CourseService {
         });
     }
 
+    editCourseRest = (course) => {
+        return fetch('http://localhost:8080//api/courses/' + course.id , {
+            method: 'put',
+            body: JSON.stringify(course),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+    }
+
 
 }
 
