@@ -5,10 +5,10 @@ import LessonService from "./LessonService";
 class CourseService {
     constructor() {
         this.courses = courses;
-        this.urlToAllCourses = 'http://localhost:8080//api/courses';
-        this.urlToSessionCourses = 'http://localhost:8080//api/courses/sessionCourses'
-        this.urlToCreateCourse = 'http://localhost:8080//api/courses'
-        this.urlToDelete = 'http://localhost:8080//api/courses/'
+        this.urlToAllCourses = 'https://jpa-server-mananpatel.herokuapp.com/api/courses';
+        this.urlToSessionCourses = 'https://jpa-server-mananpatel.herokuapp.com/api/courses/sessionCourses'
+        this.urlToCreateCourse = 'https://jpa-server-mananpatel.herokuapp.com/api/courses'
+        this.urlToDelete = 'https://jpa-server-mananpatel.herokuapp.com/api/courses/'
 
         this.moduleService = new ModuleService();
         this.lessonService = new LessonService();
@@ -171,7 +171,7 @@ class CourseService {
     }
 
     findCourseByIdRest = (courseId) => {
-        return fetch('http://localhost:8080//api/courses/' + courseId,
+        return fetch('https://jpa-server-mananpatel.herokuapp.com/api/courses/' + courseId,
             {
                 method: 'get'
             }).then(function (value) {
@@ -180,7 +180,7 @@ class CourseService {
     }
 
     editCourseRest = (course) => {
-        return fetch('http://localhost:8080//api/courses/' + course.id , {
+        return fetch('https://jpa-server-mananpatel.herokuapp.com/api/courses/' + course.id , {
             method: 'put',
             body: JSON.stringify(course),
             headers: {
