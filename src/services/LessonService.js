@@ -4,7 +4,7 @@ class LessonService {
     }
 
     addLessonToModuleREST = (mid, lesson) => {
-        return fetch('http://localhost:8080//api/module/' + mid + '/lesson', {
+        return fetch('https://jpa-server-mananpatel.herokuapp.com/api/module/' + mid + '/lesson', {
             method: 'post',
             body: JSON.stringify(lesson),
             headers: {
@@ -14,7 +14,7 @@ class LessonService {
     }
 
     editLessonREST = (lesson) => {
-        return fetch('http://localhost:8080//api/lesson/' + lesson.id, {
+        return fetch('https://jpa-server-mananpatel.herokuapp.com/api/lesson/' + lesson.id, {
             method: 'put',
             body: JSON.stringify(lesson),
             headers: {
@@ -24,7 +24,7 @@ class LessonService {
     }
 
     deleteLessonREST = (lesson) => {
-        return fetch('http://localhost:8080//api/lesson/' + lesson.id, {
+        return fetch('https://jpa-server-mananpatel.herokuapp.com/api/lesson/' + lesson.id, {
             method: 'delete',
             headers: {
                 'content-type': 'application/json'
